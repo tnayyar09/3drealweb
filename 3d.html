@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuxeEstates - Premium Real Estate</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+:root{
+--gold:#c9a84c;--gold-light:#e8d48b;--dark:#0a0a0a;--dark2:#111;--dark3:#1a1a1a;--dark4:#222;
+--white:#fff;--gray:#888;--gray-light:#ccc;--green:#27ae60;--accent:#2a6fff;--red:#e74c3c;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+
+/* LOADER */
+#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity .8s,visibility .8s}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-cube{width:80px;height:80px;transform-style:preserve-3d;animation:lcube 2s linear infinite;position:relative}
+.loader-cube div{position:absolute;width:80px;height:80px;border:2px solid var(--gold);background:rgba(201,168,76,.08)}
+.loader-cube div:nth-child(1){transform:rotateY(0deg) translateZ(40px)}
+.loader-cube div:nth-child(2){transform:rotateY(90deg) translateZ(40px)}
+.loader-cube div:nth-child(3){transform:rotateY(180deg) translateZ(40px)}
+.loader-cube div:nth-child(4){transform:rotateY(270deg) translateZ(40px)}
+@keyframes lcube{to{transform:rotateX(360deg) rotateY(360deg)}}
+.loader-txt{font-family:'Playfair Display';color:var(--gold);font-size:26px;margin-top:20px;text-align:center}
+
+/* CURSOR */
+.cur{width:22px;height:22px;border:2px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;mix-blend-mode:difference}
+.cur-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99998}
+
+/* SCROLL PROGRESS */
+.scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));z-index:10000;width:0;transition:width .1s}
+
+/* FLOATING 3D */
+.float-3d{position:fixed;pointer-events:none;z-index:1}
+.float-3d div{position:absolute;border:1px solid rgba(201,168,76,.06);transform-style:preserve-3d}
+.f3d-1{width:100px;height:100px;top:20%;left:5%;border-radius:20px;animation:f3d1 15s linear infinite}
+.f3d-2{width:60px;height:60px;top:60%;right:5%;border-radius:50%;animation:f3d2 12s linear infinite}
+.f3d-3{width:80px;height:80px;top:40%;left:80%;animation:f3d3 18s linear infinite}
+@keyframes f3d1{0%{transform:rotateX(0) rotateY(0)}50%{transform:rotateX(180deg) rotateY(180deg) translateZ(50px)}100%{transform:rotateX(360deg) rotateY(360deg)}}
+@keyframes f3d2{to{transform:rotateY(360deg) rotateZ(360deg)}}
+@keyframes f3d3{to{transform:rotateX(360deg) rotateZ(180deg)}}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;z-index:1000;transition:.4s}
+.nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);padding:12px 60px;box-shadow:0 5px 40px rgba(0,0,0,.6)}
+.logo{font-family:'Playfair Display';font-size:28px;font-weight:900;color:var(--gold);text-decoration:none;transition:transform .3s;display:inline-block}
+.logo:hover{transform:rotateY(15deg) scale(1.05)}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:35px;list-style:none;align-items:center}
+.nav-links a{color:var(--white);text-decoration:none;font-size:15px;position:relative;padding:5px 0;transition:.3s;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#b8923e)!important;color:var(--dark)!important;padding:12px 28px!important;border-radius:50px;font-weight:600!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{transform:translateY(-2px) scale(1.05)!important;box-shadow:0 10px 30px rgba(201,168,76,.4)}
+.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;background:0;border:0;padding:5px}
+.hamburger span{width:30px;height:2px;background:var(--gold);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+.mob-menu{position:fixed;top:0;right:-100%;width:100%;height:100%;background:rgba(10,10,10,.98);z-index:999;display:flex;align-items:center;justify-content:center;transition:right .5s cubic-bezier(.68,-.55,.265,1.55)}
+.mob-menu.active{right:0}
+.mob-menu ul{list-style:none;text-align:center}
+.mob-menu ul li{margin:25px 0}
+.mob-menu ul li a{color:var(--white);text-decoration:none;font-size:32px;font-family:'Playfair Display';transition:.3s;cursor:pointer}
+.mob-menu ul li a:hover{color:var(--gold)}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* 3D SCROLL */
+.s3d{perspective:1200px;transform-style:preserve-3d}
+.s3d-inner{transition:transform 1s cubic-bezier(.25,.46,.45,.94),opacity 1s;transform-style:preserve-3d;will-change:transform,opacity}
+.s3d-inner.from-bottom{transform:rotateX(-20deg) translateY(120px) translateZ(-300px) scale(.8);opacity:0}
+.s3d-inner.from-left{transform:rotateY(25deg) translateX(-150px) translateZ(-200px) scale(.85);opacity:0}
+.s3d-inner.from-right{transform:rotateY(-25deg) translateX(150px) translateZ(-200px) scale(.85);opacity:0}
+.s3d-inner.from-flip{transform:rotateY(90deg) translateZ(-400px) scale(.6);opacity:0}
+.s3d-inner.from-zoom{transform:scale(.3) rotateX(30deg) rotateY(30deg) translateZ(-500px);opacity:0}
+.s3d-inner.from-tilt{transform:rotateX(25deg) rotateZ(-10deg) translateY(80px) translateZ(-200px);opacity:0}
+.s3d-inner.from-spiral{transform:rotateX(15deg) rotateY(-30deg) rotateZ(10deg) translateZ(-350px) scale(.7);opacity:0}
+.s3d-inner.from-fold{transform:rotateX(-40deg) translateY(100px) translateZ(-200px);opacity:0;transform-origin:top center}
+.s3d-inner.from-swing{transform:rotateY(-40deg) rotateZ(5deg) translateX(-200px) translateZ(-150px);opacity:0;transform-origin:right center}
+.s3d-inner.in-view{transform:rotateY(0) rotateX(0) rotateZ(0) translateX(0) translateY(0) translateZ(0) scale(1)!important;opacity:1!important}
+.parallax-3d{transition:transform .15s ease-out}
+
+/* HERO */
+.hero{height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a1a2e 50%,#0a0a0a)}
+.hero-particles{position:absolute;top:0;left:0;width:100%;height:100%}
+.ptcl{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;opacity:.3;animation:pfl 10s infinite}
+@keyframes pfl{0%,100%{transform:translateY(0) translateX(0);opacity:0}25%{opacity:.5}50%{transform:translateY(-250px) translateX(80px);opacity:.3}}
+.hero-content{position:relative;z-index:10;max-width:750px;padding:0 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:8px 20px;border-radius:50px;font-size:13px;color:var(--gold);margin-bottom:25px;animation:fiu 1s .3s both}
+@keyframes fiu{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-family:'Playfair Display';font-size:72px;font-weight:900;line-height:1.1;margin-bottom:25px;animation:fiu 1s .5s both}
+.hl{background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--gray-light);line-height:1.8;margin-bottom:40px;animation:fiu 1s .7s both}
+.hero-btns{display:flex;gap:20px;animation:fiu 1s .9s both}
+.btn1{background:linear-gradient(135deg,var(--gold),#b8923e);color:var(--dark);padding:16px 40px;border:none;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:10px;font-family:'Poppins'}
+.btn1:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(201,168,76,.4)}
+.btn2{background:0;color:var(--white);padding:16px 40px;border:2px solid rgba(255,255,255,.3);border-radius:50px;font-size:16px;cursor:pointer;text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:10px;font-family:'Poppins'}
+.btn2:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+
+/* Hero 3D Building */
+.hero-3d{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:500px;height:600px;transform-style:preserve-3d}
+.bld{width:100%;height:100%;transform-style:preserve-3d;animation:brot 20s linear infinite;position:relative}
+@keyframes brot{0%{transform:rotateY(-15deg) rotateX(5deg)}50%{transform:rotateY(15deg) rotateX(-5deg)}100%{transform:rotateY(-15deg) rotateX(5deg)}}
+.bf{position:absolute;border:1px solid rgba(201,168,76,.2);backdrop-filter:blur(5px)}
+.bf1{width:200px;height:400px;left:150px;top:100px;transform:translateZ(60px);background:linear-gradient(180deg,rgba(201,168,76,.15),rgba(201,168,76,.05))}
+.bf2{width:120px;height:400px;left:350px;top:100px;transform:rotateY(90deg) translateZ(60px);background:linear-gradient(180deg,rgba(201,168,76,.1),rgba(201,168,76,.03))}
+.bf3{width:200px;height:120px;left:150px;top:40px;transform:rotateX(60deg) translateZ(30px);background:rgba(201,168,76,.12)}
+.wg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:20px;height:100%}
+.wc{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.15);animation:wgl 3s infinite;animation-delay:var(--d)}
+@keyframes wgl{0%,100%{background:rgba(201,168,76,.1)}50%{background:rgba(201,168,76,.4)}}
+
+/* Hero Stats */
+.hero-stats{position:absolute;bottom:0;left:0;width:100%;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-top:1px solid rgba(201,168,76,.2);display:flex;justify-content:center;padding:30px 60px;gap:80px;z-index:10;animation:fiu 1s 1.2s both}
+.st-item{text-align:center}
+.st-num{font-family:'Playfair Display';font-size:42px;font-weight:900;color:var(--gold);display:block}
+.st-lab{font-size:14px;color:var(--gray);margin-top:5px}
+
+/* SECTIONS */
+.sec{padding:120px 60px;position:relative;overflow:hidden}
+.sec-head{text-align:center;margin-bottom:70px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:14px;text-transform:uppercase;letter-spacing:3px;margin-bottom:15px}
+.sec-tag::before,.sec-tag::after{content:'';width:30px;height:1px;background:var(--gold)}
+.sec-title{font-family:'Playfair Display';font-size:48px;font-weight:700;margin-bottom:20px}
+.gold{color:var(--gold)}
+.sec-desc{color:var(--gray);font-size:17px;max-width:600px;margin:0 auto;line-height:1.7}
+
+/* Properties */
+.prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.prop-card{background:var(--dark3);border-radius:20px;overflow:hidden;transition:.5s;cursor:pointer;border:1px solid rgba(255,255,255,.05);transform-style:preserve-3d}
+.prop-card:hover{box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 30px rgba(201,168,76,.1);border-color:rgba(201,168,76,.3)}
+.prop-img{height:280px;position:relative;overflow:hidden}
+.prop-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:70px;transition:transform .5s;background:linear-gradient(135deg,var(--dark4),var(--dark2))}
+.prop-card:hover .prop-img-inner{transform:scale(1.1)}
+.prop-badge{position:absolute;top:15px;left:15px;background:var(--gold);color:var(--dark);padding:6px 16px;border-radius:50px;font-size:12px;font-weight:600;text-transform:uppercase}
+.prop-badge.sold{background:var(--red);color:#fff}
+.prop-badge.new{background:var(--green);color:#fff}
+.prop-price{position:absolute;bottom:15px;right:15px;background:rgba(10,10,10,.85);backdrop-filter:blur(10px);padding:8px 18px;border-radius:50px;font-weight:700;font-size:18px;color:var(--gold)}
+.prop-info{padding:25px}
+.prop-title{font-family:'Playfair Display';font-size:22px;margin-bottom:8px}
+.prop-loc{color:var(--gray);font-size:14px;display:flex;align-items:center;gap:5px;margin-bottom:20px}
+.prop-feats{display:flex;gap:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+.feat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray-light)}
+.feat-ic{color:var(--gold)}
+
+/* Why Cards */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.why-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:40px 30px;text-align:center;transition:.5s;transform-style:preserve-3d;position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(201,168,76,.1),transparent);opacity:0;transition:.5s}
+.why-card:hover::before{opacity:1}
+.why-card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.why-ic{width:80px;height:80px;margin:0 auto 25px;background:rgba(201,168,76,.1);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;transition:.5s}
+.why-card:hover .why-ic{background:var(--gold)}
+.why-card h3{font-family:'Playfair Display';font-size:22px;margin-bottom:12px}
+.why-card p{color:var(--gray);font-size:14px;line-height:1.7}
+
+/* Showcase */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.show-cube-wrap{perspective:800px}
+.show-cube{width:350px;height:350px;margin:0 auto;transform-style:preserve-3d;animation:scube 8s ease-in-out infinite;position:relative}
+@keyframes scube{0%,100%{transform:rotateX(-20deg) rotateY(30deg)}50%{transform:rotateX(-20deg) rotateY(390deg)}}
+.cface{position:absolute;width:260px;height:260px;left:45px;top:45px;display:flex;align-items:center;justify-content:center;font-size:55px;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.05);backdrop-filter:blur(8px)}
+.cface:nth-child(1){transform:rotateY(0) translateZ(130px)}
+.cface:nth-child(2){transform:rotateY(90deg) translateZ(130px)}
+.cface:nth-child(3){transform:rotateY(180deg) translateZ(130px)}
+.cface:nth-child(4){transform:rotateY(270deg) translateZ(130px)}
+.cface:nth-child(5){transform:rotateX(90deg) translateZ(130px)}
+.cface:nth-child(6){transform:rotateX(-90deg) translateZ(130px)}
+.show-content h2{font-family:'Playfair Display';font-size:42px;margin-bottom:20px}
+.show-content p{color:var(--gray-light);line-height:1.8;margin-bottom:30px}
+.show-list{list-style:none;margin-bottom:35px}
+.show-list li{padding:12px 0;display:flex;align-items:center;gap:15px;font-size:16px;color:var(--gray-light);border-bottom:1px solid rgba(255,255,255,.05)}
+.show-list li::before{content:'✦';color:var(--gold);font-size:14px}
+
+/* Testimonials */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.test-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:40px;transition:.5s;transform-style:preserve-3d}
+.test-card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.test-stars{color:var(--gold);font-size:18px;margin-bottom:20px}
+.test-text{font-size:15px;line-height:1.8;color:var(--gray-light);margin-bottom:25px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:15px}
+.test-av{width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8923e);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--dark)}
+.test-name{font-weight:600;font-size:16px}
+.test-role{color:var(--gray);font-size:13px}
+
+/* CTA */
+.cta-sec{padding:120px 60px;text-align:center;position:relative;overflow:hidden}
+.cta-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(10,10,10,.9))}
+.cta-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid rgba(201,168,76,.12);border-radius:50%;animation:rp 4s ease-in-out infinite}
+.cta-ring:nth-child(1){width:500px;height:500px}
+.cta-ring:nth-child(2){width:650px;height:650px;animation-delay:.5s}
+.cta-ring:nth-child(3){width:800px;height:800px;animation-delay:1s}
+@keyframes rp{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.05);opacity:.6}}
+.cta-content{position:relative;z-index:2}
+.cta-content h2{font-family:'Playfair Display';font-size:52px;margin-bottom:20px}
+.cta-content p{color:var(--gray-light);font-size:18px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* Newsletter */
+.nws{background:var(--dark3);border:1px solid rgba(201,168,76,.2);border-radius:30px;padding:60px 80px;display:flex;align-items:center;justify-content:space-between;gap:40px;margin:0 60px;transform:translateY(-60px);position:relative;z-index:10}
+.nws h3{font-family:'Playfair Display';font-size:32px}
+.nws p{color:var(--gray);margin-top:8px}
+.nws-form{display:flex;gap:12px;flex-shrink:0}
+.nws-form input{padding:16px 24px;background:var(--dark);border:1px solid rgba(255,255,255,.1);border-radius:50px;color:var(--white);font-size:15px;width:300px;outline:0;transition:.3s;font-family:'Poppins'}
+.nws-form input:focus{border-color:var(--gold)}
+.nws-form button{padding:16px 32px;background:var(--gold);border:0;border-radius:50px;color:var(--dark);font-weight:600;cursor:pointer;transition:.3s;white-space:nowrap;font-family:'Poppins'}
+.nws-form button:hover{background:var(--gold-light);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{background:var(--dark2);padding:80px 60px 30px;border-top:1px solid rgba(255,255,255,.05)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.ft-brand .logo{display:inline-block;margin-bottom:20px;font-size:32px}
+.ft-brand p{color:var(--gray);line-height:1.8;font-size:14px;margin-bottom:25px}
+.soc{display:flex;gap:12px}
+.soc a{width:45px;height:45px;border:1px solid rgba(255,255,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;font-size:16px;transition:.3s}
+.soc a:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);transform:translateY(-3px) rotateZ(5deg)}
+.ft-col h4{font-family:'Playfair Display';font-size:20px;margin-bottom:25px;color:var(--gold)}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:12px}
+.ft-col ul li a{color:var(--gray);text-decoration:none;font-size:14px;transition:.3s;display:flex;align-items:center;gap:8px;cursor:pointer}
+.ft-col ul li a:hover{color:var(--gold);transform:translateX(5px)}
+.ft-btm{border-top:1px solid rgba(255,255,255,.05);padding-top:30px;display:flex;justify-content:space-between;align-items:center;color:var(--gray);font-size:13px;flex-wrap:wrap;gap:10px}
+
+/* PAGE HERO */
+.pg-hero{height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--dark),var(--dark2))}
+.pg-hero-content{position:relative;z-index:2}
+.pg-hero-content h1{font-family:'Playfair Display';font-size:62px;margin-bottom:15px}
+.bread{color:var(--gray);font-size:15px}
+.bread a{color:var(--gold);text-decoration:none;cursor:pointer}
+.abt-3d{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;transform-style:preserve-3d;animation:abtSpin 12s linear infinite}
+@keyframes abtSpin{to{transform:translate(-50%,-50%) rotateX(360deg) rotateY(360deg)}}
+.abt-shape{position:absolute;width:100%;height:100%;border:1px solid rgba(201,168,76,.12);border-radius:20px}
+.abt-shape:nth-child(1){transform:rotateX(0)}
+.abt-shape:nth-child(2){transform:rotateX(60deg)}
+.abt-shape:nth-child(3){transform:rotateX(120deg)}
+.globe-3d{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:350px;height:350px;border:1px solid rgba(201,168,76,.1);border-radius:50%;animation:globeR 15s linear infinite}
+.globe-3d::before,.globe-3d::after{content:'';position:absolute;width:100%;height:100%;border:1px solid rgba(201,168,76,.1);border-radius:50%}
+.globe-3d::before{transform:rotateY(60deg)}
+.globe-3d::after{transform:rotateY(120deg)}
+@keyframes globeR{to{transform:translate(-50%,-50%) rotateY(360deg)}}
+.p3d-grid{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) perspective(600px) rotateX(60deg);width:600px;height:600px;display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.gc{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.04);animation:gcp 3s infinite;animation-delay:var(--d)}
+@keyframes gcp{0%,100%{background:rgba(201,168,76,.05)}50%{background:rgba(201,168,76,.18)}}
+
+/* Story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-content h2{font-family:'Playfair Display';font-size:42px;margin-bottom:20px}
+.story-content p{color:var(--gray-light);line-height:1.9;margin-bottom:20px;font-size:16px}
+.story-img{position:relative;height:500px;perspective:800px}
+.story-box{position:absolute;border-radius:20px;overflow:hidden;border:2px solid rgba(201,168,76,.2);transition:.5s;display:flex;align-items:center;justify-content:center;font-size:80px}
+.story-box:nth-child(1){width:300px;height:350px;top:0;left:0;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));transform:rotateY(-5deg);z-index:2}
+.story-box:nth-child(2){width:250px;height:300px;bottom:0;right:0;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));transform:rotateY(5deg) translateZ(-20px)}
+.story-box:hover{transform:rotateY(0) translateZ(30px);border-color:var(--gold)}
+
+/* MV Cards */
+.mv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.mv-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:50px 35px;text-align:center;transition:.5s;position:relative;overflow:hidden}
+.mv-card:hover{border-color:rgba(201,168,76,.4);box-shadow:0 25px 50px rgba(0,0,0,.4)}
+.mv-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.5s}
+.mv-card:hover::after{opacity:1}
+.mv-ic{font-size:50px;margin-bottom:25px;display:block}
+.mv-card h3{font-family:'Playfair Display';font-size:26px;margin-bottom:15px}
+.mv-card p{color:var(--gray);line-height:1.8;font-size:15px}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.team-card{text-align:center;padding:40px 25px;background:var(--dark3);border-radius:20px;border:1px solid rgba(255,255,255,.05);transition:.5s}
+.team-card:hover{border-color:rgba(201,168,76,.3)}
+.team-av{width:110px;height:110px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,var(--gold),#b8923e);display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:700;color:var(--dark);transition:.5s;border:3px solid transparent}
+.team-card:hover .team-av{border-color:var(--gold);transform:scale(1.1)}
+.team-card h3{font-size:20px;margin-bottom:5px;font-family:'Playfair Display'}
+.team-card .role{color:var(--gold);font-size:13px;text-transform:uppercase;letter-spacing:2px}
+.team-card p{color:var(--gray);font-size:14px;margin-top:15px;line-height:1.6}
+
+/* Timeline */
+.tl{position:relative;max-width:800px;margin:0 auto}
+.tl::before{content:'';position:absolute;left:50%;top:0;width:2px;height:100%;background:linear-gradient(180deg,var(--gold),transparent);transform:translateX(-50%)}
+.tl-item{display:flex;margin-bottom:60px;position:relative;align-items:center}
+.tl-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
+.tl-dot{width:20px;height:20px;background:var(--gold);border-radius:50%;position:absolute;left:50%;transform:translateX(-50%);z-index:2;box-shadow:0 0 20px rgba(201,168,76,.5)}
+.tl-content{width:45%;padding:30px;background:var(--dark3);border-radius:15px;border:1px solid rgba(255,255,255,.05);transition:.5s}
+.tl-content:hover{border-color:rgba(201,168,76,.3)}
+.tl-yr{color:var(--gold);font-weight:700;font-size:24px;font-family:'Playfair Display'}
+.tl-content h3{font-size:18px;margin:8px 0}
+.tl-content p{color:var(--gray);font-size:14px;line-height:1.6}
+
+/* Contact */
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.ct-cards{display:flex;flex-direction:column;gap:20px}
+.ct-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:30px;display:flex;align-items:center;gap:20px;transition:.5s}
+.ct-card:hover{transform:translateX(10px);border-color:rgba(201,168,76,.3);box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.ct-ic{width:60px;height:60px;flex-shrink:0;background:rgba(201,168,76,.1);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.ct-card h4{font-size:18px;margin-bottom:5px}
+.ct-card p{color:var(--gray);font-size:14px;line-height:1.5}
+.ct-form{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:50px}
+.ct-form h3{font-family:'Playfair Display';font-size:28px;margin-bottom:30px}
+.fg{margin-bottom:20px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fg label{display:block;font-size:14px;color:var(--gray-light);margin-bottom:8px}
+.fg input,.fg select,.fg textarea{width:100%;padding:14px 18px;background:var(--dark);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:var(--white);font-size:15px;font-family:'Poppins';outline:0;transition:.3s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.1)}
+.fg textarea{height:130px;resize:vertical}
+.fg select option{background:var(--dark)}
+.f-sub{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold),#b8923e);border:0;border-radius:12px;color:var(--dark);font-size:16px;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins'}
+.f-sub:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(201,168,76,.3)}
+
+/* Map */
+.map-sec{background:var(--dark2);padding:80px 60px}
+.map-box{height:400px;background:var(--dark3);border-radius:20px;border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center}
+.map-ph{text-align:center}
+.map-ph .map-ic{font-size:80px;margin-bottom:20px;display:block}
+.map-ph p{color:var(--gray);font-size:16px}
+.off-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
+.off-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:35px;transition:.5s}
+.off-card:hover{border-color:rgba(201,168,76,.3)}
+.off-card h4{font-family:'Playfair Display';font-size:22px;margin-bottom:5px}
+.off-card .city{color:var(--gold);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:15px;display:block}
+.off-card p{color:var(--gray);font-size:14px;line-height:1.7}
+
+/* FAQ */
+.faq-item{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:25px 30px;margin-bottom:15px;cursor:pointer;transition:.5s;overflow:hidden}
+.faq-item:hover{border-color:rgba(201,168,76,.3)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:500}
+.faq-q span{color:var(--gold);font-size:24px;transition:transform .3s}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s,padding .5s;color:var(--gray);font-size:15px;line-height:1.8}
+.faq-item.open .faq-a{max-height:200px;padding-top:15px}
+
+/* ============ PROJECTS FILTER BAR ============ */
+.flt-bar{background:var(--dark2);padding:30px 60px;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:65px;z-index:100}
+.flt-row{display:flex;gap:15px;align-items:flex-end;flex-wrap:wrap}
+.flt-grp{flex:1;min-width:140px}
+.flt-grp label{display:block;font-size:11px;color:var(--gray);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.flt-grp select{width:100%;padding:12px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:var(--white);font-size:14px;outline:0;font-family:'Poppins';transition:.3s;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23c9a84c' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+.flt-grp select:focus{border-color:var(--gold)}
+.flt-grp select option{background:var(--dark3);color:var(--white)}
+.flt-grp select.has-value{border-color:var(--gold);background-color:rgba(201,168,76,.05)}
+.flt-btns{display:flex;gap:10px;min-width:fit-content}
+.flt-apply{padding:12px 28px;background:var(--gold);border:0;border-radius:10px;color:var(--dark);font-weight:600;cursor:pointer;font-family:'Poppins';transition:.3s;font-size:14px}
+.flt-apply:hover{background:var(--gold-light);transform:translateY(-2px)}
+.flt-clear{padding:12px 28px;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:10px;color:var(--white);cursor:pointer;font-family:'Poppins';transition:.3s;font-size:14px}
+.flt-clear:hover{border-color:var(--red);color:var(--red);background:rgba(231,76,60,.1)}
+.flt-tags{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.flt-tag{padding:8px 20px;background:0;border:1px solid rgba(255,255,255,.15);border-radius:50px;color:var(--white);font-size:13px;cursor:pointer;transition:.3s}
+.flt-tag:hover,.flt-tag.active{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+
+/* Active Filters Display */
+.active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px;min-height:0}
+.active-filter-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:50px;font-size:12px;color:var(--gold);animation:chipIn .3s both}
+.active-filter-chip .chip-remove{cursor:pointer;font-size:14px;color:var(--gold);transition:.2s;font-weight:700}
+.active-filter-chip .chip-remove:hover{color:var(--red)}
+@keyframes chipIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+/* No Results */
+.no-results{text-align:center;padding:80px 20px;display:none}
+.no-results .nr-icon{font-size:80px;margin-bottom:20px;display:block}
+.no-results h3{font-family:'Playfair Display';font-size:28px;margin-bottom:10px}
+.no-results p{color:var(--gray);font-size:16px;margin-bottom:25px}
+
+/* Projects */
+.proj-sec{padding:60px}
+.proj-results{margin-bottom:30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.res-count{color:var(--gray);font-size:15px}
+.res-count span{color:var(--gold);font-weight:600}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.proj-card{background:var(--dark3);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.05);transition:all .5s,opacity .4s,transform .4s;transform-style:preserve-3d}
+.proj-card:hover{box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(201,168,76,.1);border-color:rgba(201,168,76,.3)}
+.proj-card.hidden{display:none}
+.proj-card.fade-in{animation:cardFadeIn .5s both}
+@keyframes cardFadeIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.proj-img{height:260px;position:relative;overflow:hidden}
+.proj-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px;background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.02));transition:transform .5s}
+.proj-card:hover .proj-img-inner{transform:scale(1.1)}
+.proj-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(10,10,10,.9),transparent);opacity:0;transition:.5s;display:flex;align-items:flex-end;padding:20px}
+.proj-card:hover .proj-overlay{opacity:1}
+.proj-overlay-btn{padding:10px 25px;background:var(--gold);color:var(--dark);border:0;border-radius:50px;font-weight:600;cursor:pointer;font-size:14px;font-family:'Poppins'}
+.proj-status{position:absolute;top:15px;left:15px;padding:6px 16px;border-radius:50px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.st-on{background:#f39c12;color:var(--dark)}
+.st-done{background:var(--green);color:#fff}
+.st-up{background:var(--accent);color:#fff}
+.proj-type{position:absolute;top:15px;right:15px;padding:6px 14px;border-radius:50px;background:rgba(10,10,10,.8);backdrop-filter:blur(10px);font-size:11px;color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.proj-info{padding:25px}
+.proj-title{font-family:'Playfair Display';font-size:22px;margin-bottom:8px}
+.proj-loc{color:var(--gray);font-size:14px;margin-bottom:15px;display:flex;align-items:center;gap:5px}
+.proj-dets{display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap}
+.proj-det{font-size:13px;color:var(--gray-light);display:flex;align-items:center;gap:5px}
+.proj-det-ic{color:var(--gold)}
+.proj-price-row{display:flex;justify-content:space-between;align-items:center;padding-top:15px;border-top:1px solid rgba(255,255,255,.08)}
+.proj-price{font-size:22px;font-weight:700;color:var(--gold)}
+.proj-price small{font-size:12px;color:var(--gray);font-weight:400}
+.proj-emi{font-size:12px;color:var(--gray)}
+.proj-emi span{color:var(--gold-light)}
+
+/* PAGINATION */
+.pgn{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:50px;flex-wrap:wrap}
+.pg-btn{min-width:45px;height:45px;padding:0 15px;background:var(--dark3);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:.3s;font-family:'Poppins';gap:6px}
+.pg-btn:hover{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:var(--gold)}
+.pg-btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 25px rgba(201,168,76,.3)}
+.pg-btn:disabled{opacity:.3;cursor:not-allowed;transform:none!important}
+.pg-btn:disabled:hover{background:var(--dark3);border-color:rgba(255,255,255,.1);color:var(--white)}
+.pg-info{color:var(--gray);font-size:14px;margin-left:15px}
+.pg-info span{color:var(--gold);font-weight:600}
+
+/* BACK TO TOP */
+.btt{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--gold);border-radius:15px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:20px;cursor:pointer;z-index:990;opacity:0;visibility:hidden;transition:.3s;border:0;transform:translateY(20px)}
+.btt.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.btt:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(201,168,76,.4)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.hero h1{font-size:52px}.hero-3d{display:none}
+.prop-grid,.proj-grid{grid-template-columns:repeat(2,1fr)}
+.why-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+.ft-grid{grid-template-columns:repeat(2,1fr)}
+.showcase{grid-template-columns:1fr}
+.sec{padding:80px 30px}
+.nws{flex-direction:column;text-align:center;margin:0 30px;padding:40px}
+}
+@media(max-width:768px){
+.nav{padding:15px 20px}.nav-links{display:none}.hamburger{display:flex}
+.hero h1{font-size:36px}.hero-content{padding:0 20px}
+.hero-stats{flex-wrap:wrap;gap:25px;padding:20px}
+.st-num{font-size:30px}
+.prop-grid,.proj-grid,.test-grid,.mv-grid,.off-grid{grid-template-columns:1fr}
+.why-grid,.team-grid{grid-template-columns:1fr}
+.ct-grid,.story{grid-template-columns:1fr}
+.fr{grid-template-columns:1fr}
+.ft-grid{grid-template-columns:1fr;gap:30px}
+.sec-title{font-size:32px}
+.hero-btns{flex-direction:column}
+.nws-form{flex-direction:column;width:100%}
+.nws-form input{width:100%}
+.flt-row{flex-direction:column}
+.flt-grp{width:100%}
+.flt-btns{width:100%}
+.flt-btns button{flex:1}
+.pg-hero-content h1{font-size:36px}
+.cta-content h2{font-size:32px}
+.tl::before{left:20px}
+.tl-item,.tl-item:nth-child(odd){flex-direction:column;text-align:left;padding-left:50px}
+.tl-dot{left:20px}
+.tl-content{width:100%}
+.cur,.cur-dot{display:none}
+.float-3d{display:none}
+.flt-bar{padding:20px}
+.proj-sec{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+<div class="float-3d"><div class="f3d-1"></div><div class="f3d-2"></div><div class="f3d-3"></div></div>
+
+<!-- LOADER -->
+<div id="loader"><div style="text-align:center"><div class="loader-cube"><div></div><div></div><div></div><div></div></div><div class="loader-txt">LuxeEstates</div></div></div>
+
+<!-- CURSOR -->
+<div class="cur" id="cur"></div><div class="cur-dot" id="curD"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="logo" onclick="go('home')">Luxe<span>Estates</span></a>
+  <ul class="nav-links">
+    <li><a onclick="go('home')" class="active" data-p="home">Home</a></li>
+    <li><a onclick="go('about')" data-p="about">About Us</a></li>
+    <li><a onclick="go('projects')" data-p="projects">Projects</a></li>
+    <li><a onclick="go('contact')" data-p="contact">Contact</a></li>
+    <li><a class="nav-cta" onclick="go('contact')">Get Consultation</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="togMob()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob-menu" id="mobMenu"><ul>
+  <li><a onclick="go('home');togMob()">Home</a></li>
+  <li><a onclick="go('about');togMob()">About Us</a></li>
+  <li><a onclick="go('projects');togMob()">Projects</a></li>
+  <li><a onclick="go('contact');togMob()">Contact</a></li>
+</ul></div>
+
+<!-- ====== HOME ====== -->
+<div class="page active" id="page-home">
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="ptcls"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-badge">✦ Premium Real Estate Since 2005</div>
+    <h1>Discover Your <span class="hl">Dream Home</span> With Us</h1>
+    <p>Experience luxury living redefined. Exclusive properties in prime locations with world-class amenities.</p>
+    <div class="hero-btns"><a class="btn1" onclick="go('projects')">Explore Properties ➜</a><a class="btn2" onclick="go('about')">▶ Our Story</a></div>
+  </div>
+  <div class="hero-3d"><div class="bld"><div class="bf bf1"><div class="wg" id="wg1"></div></div><div class="bf bf2"><div class="wg" id="wg2"></div></div><div class="bf bf3"></div></div></div>
+  <div class="hero-stats">
+    <div class="st-item"><span class="st-num" data-c="500">0</span><span class="st-lab">Properties Sold</span></div>
+    <div class="st-item"><span class="st-num" data-c="18">0</span><span class="st-lab">Years Experience</span></div>
+    <div class="st-item"><span class="st-num" data-c="50">0</span><span class="st-lab">Ongoing Projects</span></div>
+    <div class="st-item"><span class="st-num" data-c="2000">0</span><span class="st-lab">Happy Families</span></div>
+  </div>
+</section>
+
+<section class="sec s3d"><div class="s3d-inner from-bottom">
+  <div class="sec-head"><div class="sec-tag">Featured Collection</div><h2 class="sec-title">Our Premium <span class="gold">Properties</span></h2><p class="sec-desc">Hand-picked luxury residences designed for those who demand excellence.</p></div>
+  <div class="prop-grid">
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🏢</div><span class="prop-badge new">New Launch</span><span class="prop-price">₹2.5 Cr</span></div><div class="prop-info"><h3 class="prop-title">The Grand Residences</h3><div class="prop-loc">📍 Bandra West, Mumbai</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>4 BHK</span><span class="feat"><span class="feat-ic">📐</span>2,800 sqft</span><span class="feat"><span class="feat-ic">🚗</span>2 Parking</span></div></div></div>
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a2e1a,#162e16)">🏡</div><span class="prop-badge">Premium</span><span class="prop-price">₹4.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Royal Palm Villas</h3><div class="prop-loc">📍 Whitefield, Bangalore</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>5 BHK</span><span class="feat"><span class="feat-ic">📐</span>4,500 sqft</span><span class="feat"><span class="feat-ic">🚗</span>3 Parking</span></div></div></div>
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#2e1a1a,#2e1616)">🏠</div><span class="prop-badge sold">Sold Out</span><span class="prop-price">₹1.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Skyline Apartments</h3><div class="prop-loc">📍 Cyber City, Gurugram</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>3 BHK</span><span class="feat"><span class="feat-ic">📐</span>1,950 sqft</span><span class="feat"><span class="feat-ic">🚗</span>2 Parking</span></div></div></div>
+  </div>
+</div></section>
+
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-left">
+  <div class="sec-head"><div class="sec-tag">Why LuxeEstates</div><h2 class="sec-title">Why Families <span class="gold">Trust Us</span></h2></div>
+  <div class="why-grid">
+    <div class="why-card parallax-3d"><div class="why-ic">🏆</div><h3>Award Winning</h3><p>India's Best Developer for 5 consecutive years.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">🔒</div><h3>RERA Approved</h3><p>All projects fully RERA compliant with transparency.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">💎</div><h3>Premium Quality</h3><p>World-renowned architects & finest materials.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">🤝</div><h3>Lifetime Support</h3><p>Dedicated managers for property management.</p></div>
+  </div>
+</div></section>
+
+<section class="sec s3d"><div class="s3d-inner from-flip">
+  <div class="showcase">
+    <div class="show-cube-wrap parallax-3d"><div class="show-cube"><div class="cface">🏠</div><div class="cface">🌆</div><div class="cface">🏡</div><div class="cface">🏢</div><div class="cface">⭐</div><div class="cface">💎</div></div></div>
+    <div class="show-content"><div class="sec-tag" style="justify-content:flex-start">Luxury Living</div><h2>Experience The <span class="gold">Art of Living</span></h2><p>Every property is a masterpiece of architectural brilliance.</p><ul class="show-list"><li>Smart Home Automation & IoT</li><li>Rooftop Infinity Pools & Sky Lounges</li><li>24/7 Concierge & Valet</li><li>World-Class Clubhouse</li><li>EV Charging & Green Certified</li></ul><a class="btn1" onclick="go('projects')">View Projects ➜</a></div>
+  </div>
+</div></section>
+
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-right">
+  <div class="sec-head"><div class="sec-tag">Testimonials</div><h2 class="sec-title">What Clients <span class="gold">Say</span></h2></div>
+  <div class="test-grid">
+    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"From first visit to key handover, LuxeEstates made it seamless. Quality exceeded all expectations!"</p><div class="test-author"><div class="test-av">RS</div><div><div class="test-name">Rajesh Sharma</div><div class="test-role">Business Owner, Mumbai</div></div></div></div>
+    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"ROI has been phenomenal. Transparency unmatched. Highly recommended for NRI investors!"</p><div class="test-author"><div class="test-av">PM</div><div><div class="test-name">Priya Mehta</div><div class="test-role">NRI Investor, London</div></div></div></div>
+    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"World-class amenities. My family loves everything here. Best decision — our forever home!"</p><div class="test-author"><div class="test-av">AK</div><div><div class="test-name">Amit Kumar</div><div class="test-role">IT Director, Gurugram</div></div></div></div>
+  </div>
+</div></section>
+
+<section class="cta-sec s3d"><div class="cta-bg"></div><div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div>
+  <div class="s3d-inner from-zoom" style="position:relative;z-index:2"><div class="cta-content"><h2>Ready for Your <span class="gold">Dream Home?</span></h2><p>Free consultation with our property experts.</p><div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a class="btn1" onclick="go('contact')">Book Consultation ➜</a><a class="btn2" href="tel:+919876543210">📞 +91 98765 43210</a></div></div></div>
+</section>
+
+<div class="s3d" style="position:relative;z-index:10"><div class="s3d-inner from-tilt"><div class="nws"><div><h3>Stay <span class="gold">Updated</span></h3><p>Early access to new launches & opportunities.</p></div><form class="nws-form" onsubmit="event.preventDefault();alert('Subscribed! 🎉')"><input type="email" placeholder="Your email" required><button type="submit">Subscribe</button></form></div></div></div>
+
+</div>
+
+<!-- ====== ABOUT ====== -->
+<div class="page" id="page-about">
+<section class="pg-hero"><div class="abt-3d"><div class="abt-shape"></div><div class="abt-shape"></div><div class="abt-shape"></div></div><div class="pg-hero-content"><h1>About <span class="gold">LuxeEstates</span></h1><div class="bread"><a onclick="go('home')">Home</a> / About</div></div></section>
+
+<section class="sec s3d"><div class="s3d-inner from-left"><div class="story"><div class="story-content"><div class="sec-tag" style="justify-content:flex-start">Our Story</div><h2>Building <span class="gold">Dreams</span> Since 2005</h2><p>Founded by Mr. Vikram Malhotra with a mission to create homes that inspire. 50+ landmark projects across 8 cities touching 2,000+ families.</p><p>Today, LuxeEstates pioneers sustainable development, smart home technology, and community-centric living.</p></div><div class="story-img parallax-3d"><div class="story-box">🏗️</div><div class="story-box">🌇</div></div></div></div></section>
+
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-spiral"><div class="sec-head"><div class="sec-tag">Foundation</div><h2 class="sec-title">Mission, Vision & <span class="gold">Values</span></h2></div><div class="mv-grid"><div class="mv-card parallax-3d"><span class="mv-ic">🎯</span><h3>Mission</h3><p>Exceptional spaces harmonizing luxury with sustainability.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">🔭</span><h3>Vision</h3><p>India's most admired real estate brand, globally recognized.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">💡</span><h3>Values</h3><p>Integrity. Excellence. Innovation. Customer-first.</p></div></div></div></section>
+
+<section class="sec s3d"><div class="s3d-inner from-swing"><div class="sec-head"><div class="sec-tag">Leadership</div><h2 class="sec-title">Our <span class="gold">Team</span></h2></div><div class="team-grid"><div class="team-card parallax-3d"><div class="team-av">VM</div><h3>Vikram Malhotra</h3><span class="role">Founder & Chairman</span><p>25+ years building premium brands.</p></div><div class="team-card parallax-3d"><div class="team-av">SK</div><h3>Sunita Kapoor</h3><span class="role">CEO & MD</span><p>Ex-McKinsey driving strategy.</p></div><div class="team-card parallax-3d"><div class="team-av">AR</div><h3>Arjun Reddy</h3><span class="role">Chief Architect</span><p>Award-winning, 12 countries.</p></div><div class="team-card parallax-3d"><div class="team-av">NP</div><h3>Neha Patel</h3><span class="role">VP Sales</span><p>Digital-first sales pioneer.</p></div></div></div></section>
+
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-fold"><div class="sec-head"><div class="sec-tag">Journey</div><h2 class="sec-title">Our <span class="gold">Milestones</span></h2></div><div class="tl">
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2005</div><h3>Founded</h3><p>Started in Mumbai with 5 passionate professionals.</p></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2010</div><h3>First Landmark</h3><p>40-floor Grand Tower in Mumbai.</p></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2015</div><h3>Expansion</h3><p>Bangalore, Delhi NCR, Pune. 500+ units.</p></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2020</div><h3>Innovation</h3><p>First smart township. IGBC Platinum.</p></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2024</div><h3>Future</h3><p>8 cities, 50+ projects, ₹5000 Cr township.</p></div></div>
+</div></div></section>
+</div>
+
+<!-- ====== PROJECTS ====== -->
+<div class="page" id="page-projects">
+
+<section class="pg-hero"><div class="p3d-grid" id="pGrid"></div><div class="pg-hero-content"><h1>Our <span class="gold">Projects</span></h1><div class="bread"><a onclick="go('home')">Home</a> / Projects</div></div></section>
+
+<!-- FILTERS -->
+<div class="flt-bar" id="filterBar">
+  <div class="flt-row">
+    <div class="flt-grp"><label>Location</label><select id="fLoc" onchange="markActive(this)"><option value="">All Locations</option><option value="mumbai">Mumbai</option><option value="bangalore">Bangalore</option><option value="delhi">Delhi NCR</option><option value="pune">Pune</option><option value="hyderabad">Hyderabad</option><option value="chennai">Chennai</option><option value="goa">Goa</option></select></div>
+    <div class="flt-grp"><label>Type</label><select id="fType" onchange="markActive(this)"><option value="">All Types</option><option value="apartment">Apartments</option><option value="villa">Villas</option><option value="penthouse">Penthouses</option><option value="commercial">Commercial</option><option value="township">Township</option><option value="plotted">Plotted</option></select></div>
+    <div class="flt-grp"><label>Budget</label><select id="fBud" onchange="markActive(this)"><option value="">Any Budget</option><option value="under1">Under ₹1 Cr</option><option value="1to3">₹1-3 Crore</option><option value="3to5">₹3-5 Crore</option><option value="5to10">₹5-10 Crore</option><option value="above10">Above ₹10 Cr</option></select></div>
+    <div class="flt-grp"><label>Status</label><select id="fStat" onchange="markActive(this)"><option value="">All Status</option><option value="ongoing">Ongoing</option><option value="completed">Completed</option><option value="upcoming">Upcoming</option></select></div>
+    <div class="flt-grp"><label>BHK</label><select id="fBHK" onchange="markActive(this)"><option value="">All BHK</option><option value="1">1 BHK</option><option value="2">2 BHK</option><option value="3">3 BHK</option><option value="4">4 BHK</option><option value="5">5+ BHK</option></select></div>
+    <div class="flt-btns">
+      <button class="flt-apply" onclick="applyFilters()">🔍 Apply</button>
+      <button class="flt-clear" onclick="clearFilters()">✕ Clear All</button>
+    </div>
+  </div>
+  <div class="flt-tags" id="tagBar">
+    <span class="flt-tag active" data-tag="" onclick="setTag(this)">All</span>
+    <span class="flt-tag" data-tag="luxury" onclick="setTag(this)">Luxury</span>
+    <span class="flt-tag" data-tag="affordable" onclick="setTag(this)">Affordable</span>
+    <span class="flt-tag" data-tag="waterfront" onclick="setTag(this)">Waterfront</span>
+    <span class="flt-tag" data-tag="golf" onclick="setTag(this)">Golf View</span>
+    <span class="flt-tag" data-tag="smart" onclick="setTag(this)">Smart Homes</span>
+    <span class="flt-tag" data-tag="eco" onclick="setTag(this)">Eco-Friendly</span>
+  </div>
+  <div class="active-filters" id="activeFilters"></div>
+</div>
+
+<!-- PROJECTS GRID -->
+<div class="proj-sec s3d">
+  <div class="s3d-inner from-bottom">
+    <div class="proj-results">
+      <div class="res-count">Showing <span id="pShowing">0</span> of <span id="pTotal">0</span> projects</div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="no-results" id="noResults">
+      <span class="nr-icon">🔍</span>
+      <h3>No Projects Found</h3>
+      <p>Try adjusting your filters to find properties.</p>
+      <button class="btn1" onclick="clearFilters()">Clear All Filters</button>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+
+      <!-- 1 -->
+      <div class="proj-card parallax-3d" data-loc="mumbai" data-type="apartment" data-status="ongoing" data-budget="3to5" data-bhk="4" data-tags="luxury,smart">
+        <div class="proj-img"><div class="proj-img-inner">🏢</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">The Grand Residences</h3><div class="proj-loc">📍 Bandra West, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1800-2800 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>45 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹3.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.1L/mo</span></div></div></div>
+      </div>
+      <!-- 2 -->
+      <div class="proj-card parallax-3d" data-loc="bangalore" data-type="villa" data-status="completed" data-budget="5to10" data-bhk="5" data-tags="luxury,eco,smart">
+        <div class="proj-img"><div class="proj-img-inner">🏡</div><span class="proj-status st-done">Completed</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Royal Palm Villas</h3><div class="proj-loc">📍 Whitefield, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>3500-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>120 Villas</span></div><div class="proj-price-row"><div class="proj-price">₹5.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹3.1L/mo</span></div></div></div>
+      </div>
+      <!-- 3 -->
+      <div class="proj-card parallax-3d" data-loc="delhi" data-type="apartment" data-status="ongoing" data-budget="1to3" data-bhk="3" data-tags="smart,affordable">
+        <div class="proj-img"><div class="proj-img-inner">🌆</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Skyline Heights</h3><div class="proj-loc">📍 Sector 128, Noida</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1200-1950 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>35 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹1.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.08L/mo</span></div></div></div>
+      </div>
+      <!-- 4 -->
+      <div class="proj-card parallax-3d" data-loc="pune" data-type="township" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,eco">
+        <div class="proj-img"><div class="proj-img-inner">🏘️</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Township</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">LuxeCity Township</h3><div class="proj-loc">📍 Hinjewadi, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>980-2500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>200 Acres</span></div><div class="proj-price-row"><div class="proj-price">₹95 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹57K/mo</span></div></div></div>
+      </div>
+      <!-- 5 -->
+      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="penthouse" data-status="ongoing" data-budget="5to10" data-bhk="5" data-tags="luxury,waterfront">
+        <div class="proj-img"><div class="proj-img-inner">🌃</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">The Crown Penthouse</h3><div class="proj-loc">📍 Jubilee Hills, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Duplex</span><span class="proj-det"><span class="proj-det-ic">📐</span>6000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏊</span>Private Pool</span></div><div class="proj-price-row"><div class="proj-price">₹8.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹5.1L/mo</span></div></div></div>
+      </div>
+      <!-- 6 -->
+      <div class="proj-card parallax-3d" data-loc="mumbai" data-type="commercial" data-status="completed" data-budget="3to5" data-bhk="" data-tags="luxury,smart">
+        <div class="proj-img"><div class="proj-img-inner">🏦</div><span class="proj-status st-done">Completed</span><span class="proj-type">Commercial</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Luxe Business Hub</h3><div class="proj-loc">📍 BKC, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🏢</span>Offices</span><span class="proj-det"><span class="proj-det-ic">📐</span>500-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>30 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹3.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.92L/mo</span></div></div></div>
+      </div>
+      <!-- 7 -->
+      <div class="proj-card parallax-3d" data-loc="chennai" data-type="apartment" data-status="upcoming" data-budget="1to3" data-bhk="3" data-tags="waterfront,eco">
+        <div class="proj-img"><div class="proj-img-inner">🌊</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Marina Bay Towers</h3><div class="proj-loc">📍 ECR Road, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1100-1800 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Sea Facing</span></div><div class="proj-price-row"><div class="proj-price">₹1.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹90K/mo</span></div></div></div>
+      </div>
+      <!-- 8 -->
+      <div class="proj-card parallax-3d" data-loc="bangalore" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="3" data-tags="eco,affordable">
+        <div class="proj-img"><div class="proj-img-inner">🌳</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Green Valley Homes</h3><div class="proj-loc">📍 Sarjapur Road, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1050-1650 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Eco-Friendly</span></div><div class="proj-price-row"><div class="proj-price">₹1.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹72K/mo</span></div></div></div>
+      </div>
+      <!-- 9 -->
+      <div class="proj-card parallax-3d" data-loc="delhi" data-type="villa" data-status="ongoing" data-budget="5to10" data-bhk="4" data-tags="luxury,golf">
+        <div class="proj-img"><div class="proj-img-inner">⛳</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Golf Estate Villas</h3><div class="proj-loc">📍 Sector 65, Gurugram</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>4000-6500 sqft</span><span class="proj-det"><span class="proj-det-ic">⛳</span>Golf View</span></div><div class="proj-price-row"><div class="proj-price">₹7.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹4.5L/mo</span></div></div></div>
+      </div>
+      <!-- 10 -->
+      <div class="proj-card parallax-3d" data-loc="mumbai" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="2" data-tags="affordable,smart">
+        <div class="proj-img"><div class="proj-img-inner">🌇</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Horizon Heights</h3><div class="proj-loc">📍 Andheri East, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-2 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>650-1100 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>28 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹1.1 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹66K/mo</span></div></div></div>
+      </div>
+      <!-- 11 -->
+      <div class="proj-card parallax-3d" data-loc="pune" data-type="villa" data-status="ongoing" data-budget="3to5" data-bhk="4" data-tags="luxury,eco">
+        <div class="proj-img"><div class="proj-img-inner">🏕️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Woodland Estates</h3><div class="proj-loc">📍 Koregaon Park, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>2800-4200 sqft</span><span class="proj-det"><span class="proj-det-ic">🌲</span>42 Villas</span></div><div class="proj-price-row"><div class="proj-price">₹3.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.28L/mo</span></div></div></div>
+      </div>
+      <!-- 12 -->
+      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="apartment" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,smart">
+        <div class="proj-img"><div class="proj-img-inner">🏙️</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Metro Edge Homes</h3><div class="proj-loc">📍 Gachibowli, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>900-1400 sqft</span><span class="proj-det"><span class="proj-det-ic">🚇</span>Metro Connected</span></div><div class="proj-price-row"><div class="proj-price">₹78 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹47K/mo</span></div></div></div>
+      </div>
+      <!-- 13 -->
+      <div class="proj-card parallax-3d" data-loc="goa" data-type="villa" data-status="ongoing" data-budget="3to5" data-bhk="3" data-tags="luxury,waterfront">
+        <div class="proj-img"><div class="proj-img-inner">🏖️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Goa Oceanfront Villas</h3><div class="proj-loc">📍 Candolim, Goa</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>2200-3000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Beach Access</span></div><div class="proj-price-row"><div class="proj-price">₹4.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.7L/mo</span></div></div></div>
+      </div>
+      <!-- 14 -->
+      <div class="proj-card parallax-3d" data-loc="chennai" data-type="plotted" data-status="completed" data-budget="under1" data-bhk="" data-tags="affordable">
+        <div class="proj-img"><div class="proj-img-inner">📐</div><span class="proj-status st-done">Completed</span><span class="proj-type">Plotted</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Luxe Meadows Plots</h3><div class="proj-loc">📍 OMR, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">📏</span>1200-2400 sqft</span><span class="proj-det"><span class="proj-det-ic">🛣️</span>60ft Roads</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Gated</span></div><div class="proj-price-row"><div class="proj-price">₹45 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹27K/mo</span></div></div></div>
+      </div>
+      <!-- 15 -->
+      <div class="proj-card parallax-3d" data-loc="bangalore" data-type="penthouse" data-status="ongoing" data-budget="above10" data-bhk="5" data-tags="luxury,smart">
+        <div class="proj-img"><div class="proj-img-inner">👑</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Sky Palace Penthouse</h3><div class="proj-loc">📍 Indiranagar, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Triplex</span><span class="proj-det"><span class="proj-det-ic">📐</span>8500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏊</span>Rooftop Pool</span></div><div class="proj-price-row"><div class="proj-price">₹12.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹7.5L/mo</span></div></div></div>
+      </div>
+      <!-- 16 -->
+      <div class="proj-card parallax-3d" data-loc="delhi" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="3" data-tags="affordable,eco">
+        <div class="proj-img"><div class="proj-img-inner">🏢</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Emerald Greens</h3><div class="proj-loc">📍 Dwarka, New Delhi</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1100-1800 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>IGBC Gold</span></div><div class="proj-price-row"><div class="proj-price">₹1.4 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹84K/mo</span></div></div></div>
+      </div>
+      <!-- 17 -->
+      <div class="proj-card parallax-3d" data-loc="mumbai" data-type="penthouse" data-status="upcoming" data-budget="above10" data-bhk="5" data-tags="luxury,waterfront">
+        <div class="proj-img"><div class="proj-img-inner">🌅</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Sea Crown Ultra</h3><div class="proj-loc">📍 Worli Sea Face, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>10000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Sea View</span></div><div class="proj-price-row"><div class="proj-price">₹25 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹15L/mo</span></div></div></div>
+      </div>
+      <!-- 18 -->
+      <div class="proj-card parallax-3d" data-loc="pune" data-type="apartment" data-status="completed" data-budget="under1" data-bhk="1" data-tags="affordable">
+        <div class="proj-img"><div class="proj-img-inner">🏠</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Starter Homes Pune</h3><div class="proj-loc">📍 Wakad, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-2 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>550-850 sqft</span><span class="proj-det"><span class="proj-det-ic">🚇</span>Metro Adj</span></div><div class="proj-price-row"><div class="proj-price">₹42 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹25K/mo</span></div></div></div>
+      </div>
+      <!-- 19 -->
+      <div class="proj-card parallax-3d" data-loc="goa" data-type="plotted" data-status="upcoming" data-budget="1to3" data-bhk="" data-tags="waterfront,eco">
+        <div class="proj-img"><div class="proj-img-inner">🌴</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Plotted</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Goa Paradise Plots</h3><div class="proj-loc">📍 Assagao, Goa</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">📏</span>2000-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>River View</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Organic</span></div><div class="proj-price-row"><div class="proj-price">₹1.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.08L/mo</span></div></div></div>
+      </div>
+      <!-- 20 -->
+      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="commercial" data-status="ongoing" data-budget="3to5" data-bhk="" data-tags="smart">
+        <div class="proj-img"><div class="proj-img-inner">🏗️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Commercial</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Tech Park Central</h3><div class="proj-loc">📍 HITEC City, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🏢</span>IT/Office</span><span class="proj-det"><span class="proj-det-ic">📐</span>1000-8000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>25 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹4.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.52L/mo</span></div></div></div>
+      </div>
+      <!-- 21 -->
+      <div class="proj-card parallax-3d" data-loc="delhi" data-type="township" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,eco,smart">
+        <div class="proj-img"><div class="proj-img-inner">🌆</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Township</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">NCR Smart City</h3><div class="proj-loc">📍 Greater Noida</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>500-1500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>500 Acres</span></div><div class="proj-price-row"><div class="proj-price">₹35 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹21K/mo</span></div></div></div>
+      </div>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pgn" id="pagination"></div>
+  </div>
+</div>
+</div>
+
+<!-- ====== CONTACT ====== -->
+<div class="page" id="page-contact">
+<section class="pg-hero"><div class="globe-3d"></div><div class="pg-hero-content"><h1>Contact <span class="gold">Us</span></h1><div class="bread"><a onclick="go('home')">Home</a> / Contact</div></div></section>
+
+<section class="sec s3d"><div class="s3d-inner from-bottom">
+  <div class="sec-head"><div class="sec-tag">Get In Touch</div><h2 class="sec-title">We'd Love to <span class="gold">Hear From You</span></h2></div>
+  <div class="ct-grid">
+    <div class="ct-cards">
+      <div class="ct-card parallax-3d"><div class="ct-ic">📍</div><div><h4>Head Office</h4><p>LuxeEstates Tower, 15th Floor, BKC, Mumbai</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">📞</div><div><h4>Phone</h4><p>Sales: +91 98765 43210<br>Toll Free: 1800-123-4567</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">✉️</div><div><h4>Email</h4><p>sales@luxeestates.com<br>care@luxeestates.com</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">🕐</div><div><h4>Hours</h4><p>Mon-Sat: 9AM-8PM | Sun: 10AM-5PM</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">💬</div><div><h4>WhatsApp</h4><p>Instant response under 2 minutes</p></div></div>
+    </div>
+    <div class="ct-form parallax-3d"><h3>Send a <span class="gold">Message</span></h3>
+      <form onsubmit="event.preventDefault();alert('Thank you! We\'ll contact you within 24 hours 🏠')">
+        <div class="fr"><div class="fg"><label>First Name *</label><input required placeholder="First name"></div><div class="fg"><label>Last Name *</label><input required placeholder="Last name"></div></div>
+        <div class="fr"><div class="fg"><label>Email *</label><input type="email" required placeholder="Email"></div><div class="fg"><label>Phone *</label><input type="tel" required placeholder="+91"></div></div>
+        <div class="fg"><label>Interested In</label><select><option>Select type</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Commercial</option><option>Investment</option></select></div>
+        <div class="fr"><div class="fg"><label>City</label><select><option>Select</option><option>Mumbai</option><option>Bangalore</option><option>Delhi</option><option>Pune</option><option>Hyderabad</option><option>Chennai</option><option>Goa</option></select></div><div class="fg"><label>Budget</label><select><option>Select</option><option>Under ₹1 Cr</option><option>₹1-3 Cr</option><option>₹3-5 Cr</option><option>₹5+ Cr</option></select></div></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Your requirements..."></textarea></div>
+        <button type="submit" class="f-sub">Send Message ➜</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<section class="map-sec s3d"><div class="s3d-inner from-right">
+  <div class="sec-head"><div class="sec-tag">Locations</div><h2 class="sec-title">Find Us <span class="gold">Near You</span></h2></div>
+  <div class="map-box parallax-3d"><div class="map-ph"><span class="map-ic">🗺️</span><p>Interactive Map — 7 Cities | 8 Offices</p></div></div>
+  <div class="off-grid">
+    <div class="off-card parallax-3d"><h4>Mumbai HQ</h4><span class="city">Maharashtra</span><p>BKC Tower | 📞 +91 22 4567 8900</p></div>
+    <div class="off-card parallax-3d"><h4>Bangalore</h4><span class="city">Karnataka</span><p>Brigade Gateway | 📞 +91 80 4567 8901</p></div>
+    <div class="off-card parallax-3d"><h4>Delhi NCR</h4><span class="city">Haryana</span><p>Cyber Hub, Gurugram | 📞 +91 124 456 7890</p></div>
+  </div>
+</div></section>
+
+<section class="sec s3d"><div class="s3d-inner from-tilt">
+  <div class="sec-head"><div class="sec-tag">FAQ</div><h2 class="sec-title">Common <span class="gold">Questions</span></h2></div>
+  <div style="max-width:800px;margin:0 auto">
+    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Are projects RERA approved?<span>+</span></div><div class="faq-a">Yes, 100% RERA registered and compliant. Full transparency guaranteed.</div></div>
+    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Home loan assistance available?<span>+</span></div><div class="faq-a">Tie-ups with 15+ banks including SBI, HDFC, ICICI for best rates.</div></div>
+    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Can NRIs invest?<span>+</span></div><div class="faq-a">Yes! Dedicated NRI desk with virtual tours, POA, and property management.</div></div>
+    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Possession track record?<span>+</span></div><div class="faq-a">95% on-time delivery. Live CCTV access and regular updates for buyers.</div></div>
+  </div>
+</div></section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer s3d"><div class="s3d-inner from-fold">
+  <div class="ft-grid">
+    <div class="ft-brand"><a class="logo" onclick="go('home')">Luxe<span>Estates</span></a><p>India's premier luxury real estate developer since 2005. RERA registered. Award-winning.</p><div class="soc"><a href="#">f</a><a href="#">in</a><a href="#">X</a><a href="#">▶</a><a href="#">📷</a></div></div>
+    <div class="ft-col"><h4>Links</h4><ul><li><a onclick="go('home')">➤ Home</a></li><li><a onclick="go('about')">➤ About</a></li><li><a onclick="go('projects')">➤ Projects</a></li><li><a onclick="go('contact')">➤ Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Cities</h4><ul><li><a>➤ Mumbai</a></li><li><a>➤ Bangalore</a></li><li><a>➤ Delhi NCR</a></li><li><a>➤ Pune</a></li><li><a>➤ Hyderabad</a></li><li><a>➤ Goa</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a>📍 BKC, Mumbai</a></li><li><a href="tel:+919876543210">📞 +91 98765 43210</a></li><li><a>✉️ sales@luxeestates.com</a></li><li><a>🕐 Mon-Sat 9AM-8PM</a></li></ul></div>
+  </div>
+  <div class="ft-btm"><p>© 2024 LuxeEstates. All rights reserved.</p><p>Privacy | Terms | RERA Registered</p></div>
+</div></footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== LOADER =====
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1500));
+
+// ===== CURSOR =====
+const cur=document.getElementById('cur'),curD=document.getElementById('curD');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curD.style.left=mx-2.5+'px';curD.style.top=my-2.5+'px'});
+(function ac(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cur.style.left=cx-11+'px';cur.style.top=cy-11+'px';requestAnimationFrame(ac)})();
+
+// ===== NAV =====
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY;
+  document.getElementById('nav').classList.toggle('scrolled',s>50);
+  document.getElementById('btt').classList.toggle('visible',s>500);
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('scrollBar').style.width=(h>0?s/h*100:0)+'%';
+  const hc=document.getElementById('heroContent');
+  if(hc&&document.getElementById('page-home').classList.contains('active')){
+    hc.style.transform=`translateY(${s*.3}px)`;hc.style.opacity=Math.max(0,1-s/700);
+  }
+});
+
+// ===== PAGES =====
+function go(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-links a[data-p]').forEach(a=>a.classList.toggle('active',a.dataset.p===p));
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{initObs();if(p==='home')animCount();if(p==='projects'){clearFilters();}},200);
+}
+function togMob(){document.getElementById('ham').classList.toggle('active');document.getElementById('mobMenu').classList.toggle('active')}
+
+// ===== PARTICLES =====
+const pc=document.getElementById('ptcls');
+for(let i=0;i<50;i++){const d=document.createElement('div');d.className='ptcl';d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*10}s;animation-duration:${6+Math.random()*12}s`;pc.appendChild(d)}
+
+// ===== WINDOWS =====
+['wg1','wg2'].forEach(id=>{const g=document.getElementById(id);if(g)for(let i=0;i<32;i++){const w=document.createElement('div');w.className='wc';w.style.setProperty('--d',Math.random()*5+'s');g.appendChild(w)}});
+
+// ===== PROJECTS GRID BG =====
+const pg=document.getElementById('pGrid');
+if(pg)for(let i=0;i<100;i++){const c=document.createElement('div');c.className='gc';c.style.setProperty('--d',Math.random()*3+'s');pg.appendChild(c)}
+
+// ===== COUNTER =====
+function animCount(){document.querySelectorAll('.st-num').forEach(c=>{const t=+c.dataset.c;let v=0;const s=t/(2000/16);const tm=setInterval(()=>{v+=s;if(v>=t){c.textContent=t+'+';clearInterval(tm)}else c.textContent=Math.floor(v)+'+'},16)})}
+
+// ===== 3D SCROLL =====
+function initObs(){
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view')})},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.s3d-inner').forEach(el=>{el.classList.remove('in-view');obs.observe(el)});
+  setupP3D();
+}
+function setupP3D(){
+  const els=document.querySelectorAll('.parallax-3d');
+  (function upd(){
+    const wh=window.innerHeight;
+    els.forEach(el=>{
+      const r=el.getBoundingClientRect();
+      if(r.top<wh&&r.bottom>0){
+        const off=(r.top+r.height/2-wh/2)/(wh/2);
+        el.style.transform=`perspective(1000px) rotateX(${off*6}deg) rotateY(${off*-4}deg) translateZ(${Math.abs(off)*-20}px) scale(${Math.max(1-Math.abs(off)*.04,.92)})`;
+      }
+    });
+    requestAnimationFrame(upd);
+  })();
+}
+
+// ===== MOUSE TILT =====
+document.addEventListener('mousemove',e=>{
+  document.querySelectorAll('.prop-card,.proj-card:not(.hidden),.why-card,.test-card,.mv-card,.team-card,.ct-card,.off-card,.faq-item,.tl-content').forEach(c=>{
+    const r=c.getBoundingClientRect();
+    const x=e.clientX-r.left,y=e.clientY-r.top;
+    if(x>=0&&x<=r.width&&y>=0&&y<=r.height){
+      c.style.transform=`perspective(800px) rotateX(${-(y-r.height/2)/15}deg) rotateY(${(x-r.width/2)/15}deg) translateZ(15px) translateY(-8px)`;
+      c.style.boxShadow=`${-(x-r.width/2)/10}px ${(y-r.height/2)/10}px 40px rgba(201,168,76,.15)`;
+    }
+  });
+});
+document.addEventListener('mouseover',()=>{
+  document.querySelectorAll('.prop-card,.proj-card,.why-card,.test-card,.mv-card,.team-card,.ct-card,.off-card,.faq-item,.tl-content').forEach(c=>{
+    c.onmouseleave=()=>{c.style.transform='';c.style.boxShadow=''};
+  });
+});
+
+// ===== VELOCITY SKEW =====
+let psc=0;
+(function tv(){
+  const v=window.scrollY-psc;psc=window.scrollY;
+  const ap=document.querySelector('.page.active');
+  if(ap){ap.style.transform=`perspective(2000px) rotateX(${Math.max(-2,Math.min(2,v*.06))}deg)`;ap.style.transition='transform .3s ease-out'}
+  requestAnimationFrame(tv);
+})();
+
+// ============================================================
+// ===== FILTER & PAGINATION SYSTEM (FULLY WORKING) =====
+// ============================================================
+
+const PER_PAGE = 6;
+let currentPage = 1;
+let filteredCards = [];
+let activeTag = '';
+
+// Filter labels for chips
+const filterLabels = {
+  fLoc: {mumbai:'Mumbai',bangalore:'Bangalore',delhi:'Delhi NCR',pune:'Pune',hyderabad:'Hyderabad',chennai:'Chennai',goa:'Goa'},
+  fType: {apartment:'Apartment',villa:'Villa',penthouse:'Penthouse',commercial:'Commercial',township:'Township',plotted:'Plotted'},
+  fBud: {under1:'Under ₹1 Cr','1to3':'₹1-3 Cr','3to5':'₹3-5 Cr','5to10':'₹5-10 Cr',above10:'Above ₹10 Cr'},
+  fStat: {ongoing:'Ongoing',completed:'Completed',upcoming:'Upcoming'},
+  fBHK: {'1':'1 BHK','2':'2 BHK','3':'3 BHK','4':'4 BHK','5':'5+ BHK'}
+};
+
+function markActive(sel){
+  sel.classList.toggle('has-value',sel.value!=='');
+}
+
+function getFilters(){
+  return {
+    loc: document.getElementById('fLoc').value,
+    type: document.getElementById('fType').value,
+    budget: document.getElementById('fBud').value,
+    status: document.getElementById('fStat').value,
+    bhk: document.getElementById('fBHK').value,
+    tag: activeTag
+  };
+}
+
+function matchCard(card, filters){
+  if(filters.loc && card.dataset.loc !== filters.loc) return false;
+  if(filters.type && card.dataset.type !== filters.type) return false;
+  if(filters.budget && card.dataset.budget !== filters.budget) return false;
+  if(filters.status && card.dataset.status !== filters.status) return false;
+  if(filters.bhk && card.dataset.bhk !== filters.bhk) return false;
+  if(filters.tag){
+    const tags = (card.dataset.tags||'').split(',');
+    if(!tags.includes(filters.tag)) return false;
+  }
+  return true;
+}
+
+function applyFilters(){
+  const filters = getFilters();
+  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
+
+  filteredCards = allCards.filter(c => matchCard(c, filters));
+  currentPage = 1;
+
+  renderPage();
+  renderActiveChips(filters);
+  renderPagination();
+
+  // Smooth scroll to results
+  document.querySelector('.proj-sec').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderPage(){
+  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
+  const start = (currentPage - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+  const pageCards = filteredCards.slice(start, end);
+
+  // Hide all first
+  allCards.forEach(c => {
+    c.classList.add('hidden');
+    c.classList.remove('fade-in');
+  });
+
+  // Show page cards with staggered animation
+  pageCards.forEach((c, i) => {
+    c.classList.remove('hidden');
+    setTimeout(() => c.classList.add('fade-in'), i * 80);
+  });
+
+  // Update counts
+  document.getElementById('pShowing').textContent = pageCards.length;
+  document.getElementById('pTotal').textContent = filteredCards.length;
+
+  // No results
+  document.getElementById('noResults').style.display = filteredCards.length === 0 ? 'block' : 'none';
+  document.getElementById('projGrid').style.display = filteredCards.length === 0 ? 'none' : 'grid';
+}
+
+function renderPagination(){
+  const totalPages = Math.ceil(filteredCards.length / PER_PAGE);
+  const pgn = document.getElementById('pagination');
+  pgn.innerHTML = '';
+
+  if(totalPages <= 1){ pgn.style.display = 'none'; return; }
+  pgn.style.display = 'flex';
+
+  // Prev
+  const prev = document.createElement('button');
+  prev.className = 'pg-btn';
+  prev.innerHTML = '← Prev';
+  prev.disabled = currentPage === 1;
+  prev.onclick = () => { if(currentPage > 1){ currentPage--; renderPage(); renderPagination(); scrollToGrid(); }};
+  pgn.appendChild(prev);
+
+  // Page numbers
+  for(let i = 1; i <= totalPages; i++){
+    const btn = document.createElement('button');
+    btn.className = 'pg-btn' + (i === currentPage ? ' active' : '');
+    btn.textContent = i;
+    btn.onclick = () => { currentPage = i; renderPage(); renderPagination(); scrollToGrid(); };
+    pgn.appendChild(btn);
+  }
+
+  // Next
+  const next = document.createElement('button');
+  next.className = 'pg-btn';
+  next.innerHTML = 'Next →';
+  next.disabled = currentPage === totalPages;
+  next.onclick = () => { if(currentPage < totalPages){ currentPage++; renderPage(); renderPagination(); scrollToGrid(); }};
+  pgn.appendChild(next);
+
+  // Info
+  const info = document.createElement('span');
+  info.className = 'pg-info';
+  info.innerHTML = `Page <span>${currentPage}</span> of <span>${totalPages}</span>`;
+  pgn.appendChild(info);
+}
+
+function scrollToGrid(){
+  document.querySelector('.proj-sec').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderActiveChips(filters){
+  const box = document.getElementById('activeFilters');
+  box.innerHTML = '';
+  const ids = ['fLoc','fType','fBud','fStat','fBHK'];
+  const keys = ['loc','type','budget','status','bhk'];
+
+  keys.forEach((k,i) => {
+    if(filters[k]){
+      const chip = document.createElement('span');
+      chip.className = 'active-filter-chip';
+      const label = filterLabels[ids[i]][filters[k]] || filters[k];
+      chip.innerHTML = `${label} <span class="chip-remove" onclick="removeFilter('${ids[i]}')">✕</span>`;
+      box.appendChild(chip);
+    }
+  });
+
+  if(filters.tag){
+    const chip = document.createElement('span');
+    chip.className = 'active-filter-chip';
+    chip.innerHTML = `${filters.tag.charAt(0).toUpperCase()+filters.tag.slice(1)} <span class="chip-remove" onclick="removeTagFilter()">✕</span>`;
+    box.appendChild(chip);
+  }
+}
+
+function removeFilter(selectId){
+  const sel = document.getElementById(selectId);
+  sel.value = '';
+  sel.classList.remove('has-value');
+  applyFilters();
+}
+
+function removeTagFilter(){
+  activeTag = '';
+  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  document.querySelector('.flt-tag[data-tag=""]').classList.add('active');
+  applyFilters();
+}
+
+function clearFilters(){
+  // Reset all selects
+  ['fLoc','fType','fBud','fStat','fBHK'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.value = '';
+    sel.classList.remove('has-value');
+  });
+
+  // Reset tag
+  activeTag = '';
+  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  document.querySelector('.flt-tag[data-tag=""]').classList.add('active');
+
+  // Clear chips
+  document.getElementById('activeFilters').innerHTML = '';
+
+  // Apply
+  applyFilters();
+}
+
+function setTag(el){
+  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  activeTag = el.dataset.tag || '';
+  applyFilters();
+}
+
+// ===== Auto-apply on any filter change =====
+['fLoc','fType','fBud','fStat','fBHK'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => applyFilters());
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  initObs();
+  setTimeout(animCount, 2000);
+
+  // Initialize projects
+  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
+  filteredCards = [...allCards];
+  renderPage();
+  renderPagination();
+});
+</script>
+</body>
+</html>
