@@ -30,10 +30,10 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .cur{width:22px;height:22px;border:2px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;mix-blend-mode:difference}
 .cur-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99998}
 
-/* SCROLL PROGRESS */
+/* SCROLL BAR */
 .scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));z-index:10000;width:0;transition:width .1s}
 
-/* FLOATING 3D */
+/* FLOAT 3D */
 .float-3d{position:fixed;pointer-events:none;z-index:1}
 .float-3d div{position:absolute;border:1px solid rgba(201,168,76,.06);transform-style:preserve-3d}
 .f3d-1{width:100px;height:100px;top:20%;left:5%;border-radius:20px;animation:f3d1 15s linear infinite}
@@ -105,7 +105,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .btn2{background:0;color:var(--white);padding:16px 40px;border:2px solid rgba(255,255,255,.3);border-radius:50px;font-size:16px;cursor:pointer;text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:10px;font-family:'Poppins'}
 .btn2:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
 
-/* Hero 3D Building */
+/* Hero 3D */
 .hero-3d{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:500px;height:600px;transform-style:preserve-3d}
 .bld{width:100%;height:100%;transform-style:preserve-3d;animation:brot 20s linear infinite;position:relative}
 @keyframes brot{0%{transform:rotateY(-15deg) rotateX(5deg)}50%{transform:rotateY(15deg) rotateX(-5deg)}100%{transform:rotateY(-15deg) rotateX(5deg)}}
@@ -117,7 +117,6 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .wc{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.15);animation:wgl 3s infinite;animation-delay:var(--d)}
 @keyframes wgl{0%,100%{background:rgba(201,168,76,.1)}50%{background:rgba(201,168,76,.4)}}
 
-/* Hero Stats */
 .hero-stats{position:absolute;bottom:0;left:0;width:100%;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-top:1px solid rgba(201,168,76,.2);display:flex;justify-content:center;padding:30px 60px;gap:80px;z-index:10;animation:fiu 1s 1.2s both}
 .st-item{text-align:center}
 .st-num{font-family:'Playfair Display';font-size:42px;font-weight:900;color:var(--gold);display:block}
@@ -150,11 +149,9 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .feat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray-light)}
 .feat-ic{color:var(--gold)}
 
-/* Why Cards */
+/* Why */
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
 .why-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:40px 30px;text-align:center;transition:.5s;transform-style:preserve-3d;position:relative;overflow:hidden}
-.why-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(201,168,76,.1),transparent);opacity:0;transition:.5s}
-.why-card:hover::before{opacity:1}
 .why-card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
 .why-ic{width:80px;height:80px;margin:0 auto 25px;background:rgba(201,168,76,.1);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;transition:.5s}
 .why-card:hover .why-ic{background:var(--gold)}
@@ -177,17 +174,17 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .show-content p{color:var(--gray-light);line-height:1.8;margin-bottom:30px}
 .show-list{list-style:none;margin-bottom:35px}
 .show-list li{padding:12px 0;display:flex;align-items:center;gap:15px;font-size:16px;color:var(--gray-light);border-bottom:1px solid rgba(255,255,255,.05)}
-.show-list li::before{content:'✦';color:var(--gold);font-size:14px}
+.show-list li::before{content:'✦';color:var(--gold)}
 
 /* Testimonials */
 .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.test-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:40px;transition:.5s;transform-style:preserve-3d}
-.test-card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.test-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:40px;transition:.5s}
+.test-card:hover{border-color:rgba(201,168,76,.3)}
 .test-stars{color:var(--gold);font-size:18px;margin-bottom:20px}
 .test-text{font-size:15px;line-height:1.8;color:var(--gray-light);margin-bottom:25px;font-style:italic}
 .test-author{display:flex;align-items:center;gap:15px}
 .test-av{width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8923e);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--dark)}
-.test-name{font-weight:600;font-size:16px}
+.test-name{font-weight:600}
 .test-role{color:var(--gray);font-size:13px}
 
 /* CTA */
@@ -209,8 +206,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .nws-form{display:flex;gap:12px;flex-shrink:0}
 .nws-form input{padding:16px 24px;background:var(--dark);border:1px solid rgba(255,255,255,.1);border-radius:50px;color:var(--white);font-size:15px;width:300px;outline:0;transition:.3s;font-family:'Poppins'}
 .nws-form input:focus{border-color:var(--gold)}
-.nws-form button{padding:16px 32px;background:var(--gold);border:0;border-radius:50px;color:var(--dark);font-weight:600;cursor:pointer;transition:.3s;white-space:nowrap;font-family:'Poppins'}
-.nws-form button:hover{background:var(--gold-light);transform:translateY(-2px)}
+.nws-form button{padding:16px 32px;background:var(--gold);border:0;border-radius:50px;color:var(--dark);font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins'}
 
 /* FOOTER */
 .footer{background:var(--dark2);padding:80px 60px 30px;border-top:1px solid rgba(255,255,255,.05)}
@@ -218,14 +214,14 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .ft-brand .logo{display:inline-block;margin-bottom:20px;font-size:32px}
 .ft-brand p{color:var(--gray);line-height:1.8;font-size:14px;margin-bottom:25px}
 .soc{display:flex;gap:12px}
-.soc a{width:45px;height:45px;border:1px solid rgba(255,255,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;font-size:16px;transition:.3s}
-.soc a:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);transform:translateY(-3px) rotateZ(5deg)}
+.soc a{width:45px;height:45px;border:1px solid rgba(255,255,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;transition:.3s}
+.soc a:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);transform:translateY(-3px)}
 .ft-col h4{font-family:'Playfair Display';font-size:20px;margin-bottom:25px;color:var(--gold)}
 .ft-col ul{list-style:none}
 .ft-col ul li{margin-bottom:12px}
-.ft-col ul li a{color:var(--gray);text-decoration:none;font-size:14px;transition:.3s;display:flex;align-items:center;gap:8px;cursor:pointer}
-.ft-col ul li a:hover{color:var(--gold);transform:translateX(5px)}
-.ft-btm{border-top:1px solid rgba(255,255,255,.05);padding-top:30px;display:flex;justify-content:space-between;align-items:center;color:var(--gray);font-size:13px;flex-wrap:wrap;gap:10px}
+.ft-col ul li a{color:var(--gray);text-decoration:none;font-size:14px;transition:.3s;cursor:pointer}
+.ft-col ul li a:hover{color:var(--gold);transform:translateX(5px);display:inline-block}
+.ft-btm{border-top:1px solid rgba(255,255,255,.05);padding-top:30px;display:flex;justify-content:space-between;color:var(--gray);font-size:13px;flex-wrap:wrap;gap:10px}
 
 /* PAGE HERO */
 .pg-hero{height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--dark),var(--dark2))}
@@ -248,37 +244,28 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .gc{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.04);animation:gcp 3s infinite;animation-delay:var(--d)}
 @keyframes gcp{0%,100%{background:rgba(201,168,76,.05)}50%{background:rgba(201,168,76,.18)}}
 
-/* Story */
+/* About sections */
 .story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .story-content h2{font-family:'Playfair Display';font-size:42px;margin-bottom:20px}
-.story-content p{color:var(--gray-light);line-height:1.9;margin-bottom:20px;font-size:16px}
+.story-content p{color:var(--gray-light);line-height:1.9;margin-bottom:20px}
 .story-img{position:relative;height:500px;perspective:800px}
-.story-box{position:absolute;border-radius:20px;overflow:hidden;border:2px solid rgba(201,168,76,.2);transition:.5s;display:flex;align-items:center;justify-content:center;font-size:80px}
+.story-box{position:absolute;border-radius:20px;border:2px solid rgba(201,168,76,.2);transition:.5s;display:flex;align-items:center;justify-content:center;font-size:80px}
 .story-box:nth-child(1){width:300px;height:350px;top:0;left:0;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));transform:rotateY(-5deg);z-index:2}
-.story-box:nth-child(2){width:250px;height:300px;bottom:0;right:0;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));transform:rotateY(5deg) translateZ(-20px)}
-.story-box:hover{transform:rotateY(0) translateZ(30px);border-color:var(--gold)}
-
-/* MV Cards */
+.story-box:nth-child(2){width:250px;height:300px;bottom:0;right:0;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));transform:rotateY(5deg)}
 .mv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.mv-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:50px 35px;text-align:center;transition:.5s;position:relative;overflow:hidden}
-.mv-card:hover{border-color:rgba(201,168,76,.4);box-shadow:0 25px 50px rgba(0,0,0,.4)}
-.mv-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.5s}
-.mv-card:hover::after{opacity:1}
+.mv-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:20px;padding:50px 35px;text-align:center;transition:.5s}
+.mv-card:hover{border-color:rgba(201,168,76,.4)}
 .mv-ic{font-size:50px;margin-bottom:25px;display:block}
 .mv-card h3{font-family:'Playfair Display';font-size:26px;margin-bottom:15px}
-.mv-card p{color:var(--gray);line-height:1.8;font-size:15px}
-
-/* Team */
+.mv-card p{color:var(--gray);line-height:1.8}
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
 .team-card{text-align:center;padding:40px 25px;background:var(--dark3);border-radius:20px;border:1px solid rgba(255,255,255,.05);transition:.5s}
 .team-card:hover{border-color:rgba(201,168,76,.3)}
-.team-av{width:110px;height:110px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,var(--gold),#b8923e);display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:700;color:var(--dark);transition:.5s;border:3px solid transparent}
-.team-card:hover .team-av{border-color:var(--gold);transform:scale(1.1)}
+.team-av{width:110px;height:110px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,var(--gold),#b8923e);display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:700;color:var(--dark);transition:.5s}
+.team-card:hover .team-av{transform:scale(1.1)}
 .team-card h3{font-size:20px;margin-bottom:5px;font-family:'Playfair Display'}
 .team-card .role{color:var(--gold);font-size:13px;text-transform:uppercase;letter-spacing:2px}
 .team-card p{color:var(--gray);font-size:14px;margin-top:15px;line-height:1.6}
-
-/* Timeline */
 .tl{position:relative;max-width:800px;margin:0 auto}
 .tl::before{content:'';position:absolute;left:50%;top:0;width:2px;height:100%;background:linear-gradient(180deg,var(--gold),transparent);transform:translateX(-50%)}
 .tl-item{display:flex;margin-bottom:60px;position:relative;align-items:center}
@@ -294,7 +281,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
 .ct-cards{display:flex;flex-direction:column;gap:20px}
 .ct-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:30px;display:flex;align-items:center;gap:20px;transition:.5s}
-.ct-card:hover{transform:translateX(10px);border-color:rgba(201,168,76,.3);box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.ct-card:hover{transform:translateX(10px);border-color:rgba(201,168,76,.3)}
 .ct-ic{width:60px;height:60px;flex-shrink:0;background:rgba(201,168,76,.1);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px}
 .ct-card h4{font-size:18px;margin-bottom:5px}
 .ct-card p{color:var(--gray);font-size:14px;line-height:1.5}
@@ -304,35 +291,31 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .fg label{display:block;font-size:14px;color:var(--gray-light);margin-bottom:8px}
 .fg input,.fg select,.fg textarea{width:100%;padding:14px 18px;background:var(--dark);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:var(--white);font-size:15px;font-family:'Poppins';outline:0;transition:.3s}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.1)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
 .fg textarea{height:130px;resize:vertical}
 .fg select option{background:var(--dark)}
 .f-sub{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold),#b8923e);border:0;border-radius:12px;color:var(--dark);font-size:16px;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins'}
 .f-sub:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(201,168,76,.3)}
-
-/* Map */
 .map-sec{background:var(--dark2);padding:80px 60px}
 .map-box{height:400px;background:var(--dark3);border-radius:20px;border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center}
 .map-ph{text-align:center}
 .map-ph .map-ic{font-size:80px;margin-bottom:20px;display:block}
-.map-ph p{color:var(--gray);font-size:16px}
+.map-ph p{color:var(--gray)}
 .off-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
 .off-card{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:35px;transition:.5s}
 .off-card:hover{border-color:rgba(201,168,76,.3)}
 .off-card h4{font-family:'Playfair Display';font-size:22px;margin-bottom:5px}
 .off-card .city{color:var(--gold);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:15px;display:block}
 .off-card p{color:var(--gray);font-size:14px;line-height:1.7}
-
-/* FAQ */
 .faq-item{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:25px 30px;margin-bottom:15px;cursor:pointer;transition:.5s;overflow:hidden}
 .faq-item:hover{border-color:rgba(201,168,76,.3)}
 .faq-q{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:500}
 .faq-q span{color:var(--gold);font-size:24px;transition:transform .3s}
 .faq-item.open .faq-q span{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .5s,padding .5s;color:var(--gray);font-size:15px;line-height:1.8}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s;color:var(--gray);font-size:15px;line-height:1.8}
 .faq-item.open .faq-a{max-height:200px;padding-top:15px}
 
-/* ============ PROJECTS FILTER BAR ============ */
+/* ============ FILTER BAR ============ */
 .flt-bar{background:var(--dark2);padding:30px 60px;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:65px;z-index:100}
 .flt-row{display:flex;gap:15px;align-items:flex-end;flex-wrap:wrap}
 .flt-grp{flex:1;min-width:140px}
@@ -345,19 +328,72 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .flt-apply{padding:12px 28px;background:var(--gold);border:0;border-radius:10px;color:var(--dark);font-weight:600;cursor:pointer;font-family:'Poppins';transition:.3s;font-size:14px}
 .flt-apply:hover{background:var(--gold-light);transform:translateY(-2px)}
 .flt-clear{padding:12px 28px;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:10px;color:var(--white);cursor:pointer;font-family:'Poppins';transition:.3s;font-size:14px}
-.flt-clear:hover{border-color:var(--red);color:var(--red);background:rgba(231,76,60,.1)}
+.flt-clear:hover{border-color:var(--red);color:var(--red)}
 .flt-tags{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 .flt-tag{padding:8px 20px;background:0;border:1px solid rgba(255,255,255,.15);border-radius:50px;color:var(--white);font-size:13px;cursor:pointer;transition:.3s}
 .flt-tag:hover,.flt-tag.active{background:var(--gold);color:var(--dark);border-color:var(--gold)}
-
-/* Active Filters Display */
-.active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px;min-height:0}
+.active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
 .active-filter-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:50px;font-size:12px;color:var(--gold);animation:chipIn .3s both}
-.active-filter-chip .chip-remove{cursor:pointer;font-size:14px;color:var(--gold);transition:.2s;font-weight:700}
-.active-filter-chip .chip-remove:hover{color:var(--red)}
+.active-filter-chip .chip-x{cursor:pointer;font-weight:700;transition:.2s}
+.active-filter-chip .chip-x:hover{color:var(--red)}
 @keyframes chipIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
 
-/* No Results */
+/* ===== MOBILE FILTER TOGGLE BUTTON ===== */
+.mob-filter-toggle{
+  display:none;
+  width:100%;
+  padding:16px 20px;
+  background:var(--dark2);
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  color:var(--white);
+  font-family:'Poppins';
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  position:sticky;
+  top:60px;
+  z-index:101;
+  transition:all .3s;
+  text-align:center;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+}
+.mob-filter-toggle .filter-icon{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 30px;
+  background:linear-gradient(135deg,var(--gold),#b8923e);
+  color:var(--dark);
+  border-radius:50px;
+  transition:all .3s;
+}
+.mob-filter-toggle .filter-icon:hover{
+  transform:scale(1.05);
+  box-shadow:0 8px 25px rgba(201,168,76,.4);
+}
+.mob-filter-toggle.has-filters .filter-icon{
+  position:relative;
+}
+.mob-filter-toggle .filter-count{
+  display:none;
+  width:22px;height:22px;
+  background:var(--red);
+  color:var(--white);
+  border-radius:50%;
+  font-size:11px;
+  font-weight:700;
+  align-items:center;
+  justify-content:center;
+  margin-left:6px;
+}
+.mob-filter-toggle.has-filters .filter-count{
+  display:inline-flex;
+}
+
+/* No results */
 .no-results{text-align:center;padding:80px 20px;display:none}
 .no-results .nr-icon{font-size:80px;margin-bottom:20px;display:block}
 .no-results h3{font-family:'Playfair Display';font-size:28px;margin-bottom:10px}
@@ -369,7 +405,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .res-count{color:var(--gray);font-size:15px}
 .res-count span{color:var(--gold);font-weight:600}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.proj-card{background:var(--dark3);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.05);transition:all .5s,opacity .4s,transform .4s;transform-style:preserve-3d}
+.proj-card{background:var(--dark3);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.05);transition:all .5s;transform-style:preserve-3d}
 .proj-card:hover{box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(201,168,76,.1);border-color:rgba(201,168,76,.3)}
 .proj-card.hidden{display:none}
 .proj-card.fade-in{animation:cardFadeIn .5s both}
@@ -402,54 +438,147 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 .pg-btn{min-width:45px;height:45px;padding:0 15px;background:var(--dark3);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:.3s;font-family:'Poppins';gap:6px}
 .pg-btn:hover{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:var(--gold)}
 .pg-btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 25px rgba(201,168,76,.3)}
-.pg-btn:disabled{opacity:.3;cursor:not-allowed;transform:none!important}
-.pg-btn:disabled:hover{background:var(--dark3);border-color:rgba(255,255,255,.1);color:var(--white)}
+.pg-btn:disabled{opacity:.3;cursor:not-allowed}
 .pg-info{color:var(--gray);font-size:14px;margin-left:15px}
 .pg-info span{color:var(--gold);font-weight:600}
 
-/* BACK TO TOP */
-.btt{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--gold);border-radius:15px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:20px;cursor:pointer;z-index:990;opacity:0;visibility:hidden;transition:.3s;border:0;transform:translateY(20px)}
-.btt.visible{opacity:1;visibility:visible;transform:translateY(0)}
+/* BACK TOP */
+.btt{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--gold);border-radius:15px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:20px;cursor:pointer;z-index:990;opacity:0;visibility:hidden;transition:.3s;border:0}
+.btt.visible{opacity:1;visibility:visible}
 .btt:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(201,168,76,.4)}
 
-/* RESPONSIVE */
+/* ============ RESPONSIVE ============ */
 @media(max-width:1024px){
-.hero h1{font-size:52px}.hero-3d{display:none}
-.prop-grid,.proj-grid{grid-template-columns:repeat(2,1fr)}
-.why-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
-.ft-grid{grid-template-columns:repeat(2,1fr)}
-.showcase{grid-template-columns:1fr}
-.sec{padding:80px 30px}
-.nws{flex-direction:column;text-align:center;margin:0 30px;padding:40px}
+  .hero h1{font-size:52px}.hero-3d{display:none}
+  .prop-grid,.proj-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:repeat(2,1fr)}
+  .showcase{grid-template-columns:1fr}
+  .sec{padding:80px 30px}
+  .nws{flex-direction:column;text-align:center;margin:0 30px;padding:40px}
 }
 @media(max-width:768px){
-.nav{padding:15px 20px}.nav-links{display:none}.hamburger{display:flex}
-.hero h1{font-size:36px}.hero-content{padding:0 20px}
-.hero-stats{flex-wrap:wrap;gap:25px;padding:20px}
-.st-num{font-size:30px}
-.prop-grid,.proj-grid,.test-grid,.mv-grid,.off-grid{grid-template-columns:1fr}
-.why-grid,.team-grid{grid-template-columns:1fr}
-.ct-grid,.story{grid-template-columns:1fr}
-.fr{grid-template-columns:1fr}
-.ft-grid{grid-template-columns:1fr;gap:30px}
-.sec-title{font-size:32px}
-.hero-btns{flex-direction:column}
-.nws-form{flex-direction:column;width:100%}
-.nws-form input{width:100%}
-.flt-row{flex-direction:column}
-.flt-grp{width:100%}
-.flt-btns{width:100%}
-.flt-btns button{flex:1}
-.pg-hero-content h1{font-size:36px}
-.cta-content h2{font-size:32px}
-.tl::before{left:20px}
-.tl-item,.tl-item:nth-child(odd){flex-direction:column;text-align:left;padding-left:50px}
-.tl-dot{left:20px}
-.tl-content{width:100%}
-.cur,.cur-dot{display:none}
-.float-3d{display:none}
-.flt-bar{padding:20px}
-.proj-sec{padding:30px 20px}
+  .nav{padding:15px 20px}.nav-links{display:none}.hamburger{display:flex}
+  .hero h1{font-size:36px}.hero-content{padding:0 20px}
+  .hero-stats{flex-wrap:wrap;gap:25px;padding:20px}
+  .st-num{font-size:30px}
+  .prop-grid,.proj-grid,.test-grid,.mv-grid,.off-grid{grid-template-columns:1fr}
+  .why-grid,.team-grid{grid-template-columns:1fr}
+  .ct-grid,.story{grid-template-columns:1fr}
+  .fr{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr;gap:30px}
+  .sec-title{font-size:32px}
+  .hero-btns{flex-direction:column}
+  .nws-form{flex-direction:column;width:100%}
+  .nws-form input{width:100%}
+  .pg-hero-content h1{font-size:36px}
+  .cta-content h2{font-size:32px}
+  .tl::before{left:20px}
+  .tl-item,.tl-item:nth-child(odd){flex-direction:column;text-align:left;padding-left:50px}
+  .tl-dot{left:20px}
+  .tl-content{width:100%}
+  .cur,.cur-dot{display:none}
+  .float-3d{display:none}
+  .proj-sec{padding:30px 15px}
+
+  /* ===== MOBILE FILTER MAGIC ===== */
+  .mob-filter-toggle{
+    display:flex;
+  }
+  .flt-bar{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    z-index:9999;
+    padding:0;
+    overflow-y:auto;
+    background:rgba(10,10,10,.98);
+    backdrop-filter:blur(20px);
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(100%);
+    transition:all .4s cubic-bezier(.4,0,.2,1);
+  }
+  .flt-bar.mob-open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .flt-bar .flt-inner{
+    padding:20px;
+    flex:1;
+    overflow-y:auto;
+  }
+  .flt-bar .mob-flt-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .flt-bar .mob-flt-header h3{
+    font-family:'Playfair Display';
+    font-size:24px;
+  }
+  .flt-bar .mob-flt-close{
+    width:44px;height:44px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:12px;
+    color:var(--white);
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+  }
+  .flt-bar .mob-flt-close:hover{
+    background:var(--red);border-color:var(--red);
+  }
+  .flt-row{
+    flex-direction:column;
+    gap:15px;
+  }
+  .flt-grp{
+    width:100%;
+    min-width:100%;
+  }
+  .flt-grp label{
+    font-size:13px;
+    margin-bottom:8px;
+  }
+  .flt-grp select{
+    padding:16px 18px;
+    font-size:16px;
+    border-radius:14px;
+  }
+  .flt-btns{
+    width:100%;
+    flex-direction:column;
+    gap:12px;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:var(--dark2);
+    position:sticky;
+    bottom:0;
+  }
+  .flt-apply,.flt-clear{
+    width:100%;
+    padding:16px;
+    font-size:16px;
+    border-radius:14px;
+    text-align:center;
+  }
+  .flt-tags{
+    padding:0 0 10px;
+  }
+  .flt-tag{
+    padding:10px 18px;
+    font-size:14px;
+  }
 }
 </style>
 </head>
@@ -476,7 +605,6 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
   </ul>
   <button class="hamburger" id="ham" onclick="togMob()"><span></span><span></span><span></span></button>
 </nav>
-
 <div class="mob-menu" id="mobMenu"><ul>
   <li><a onclick="go('home');togMob()">Home</a></li>
   <li><a onclick="go('about');togMob()">About Us</a></li>
@@ -486,14 +614,12 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 
 <!-- ====== HOME ====== -->
 <div class="page active" id="page-home">
-
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-particles" id="ptcls"></div>
+  <div class="hero-bg"></div><div class="hero-particles" id="ptcls"></div>
   <div class="hero-content" id="heroContent">
     <div class="hero-badge">✦ Premium Real Estate Since 2005</div>
     <h1>Discover Your <span class="hl">Dream Home</span> With Us</h1>
-    <p>Experience luxury living redefined. Exclusive properties in prime locations with world-class amenities.</p>
+    <p>Experience luxury living redefined. Exclusive properties in prime locations.</p>
     <div class="hero-btns"><a class="btn1" onclick="go('projects')">Explore Properties ➜</a><a class="btn2" onclick="go('about')">▶ Our Story</a></div>
   </div>
   <div class="hero-3d"><div class="bld"><div class="bf bf1"><div class="wg" id="wg1"></div></div><div class="bf bf2"><div class="wg" id="wg2"></div></div><div class="bf bf3"></div></div></div>
@@ -505,96 +631,80 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
   </div>
 </section>
 
-<section class="sec s3d"><div class="s3d-inner from-bottom">
-  <div class="sec-head"><div class="sec-tag">Featured Collection</div><h2 class="sec-title">Our Premium <span class="gold">Properties</span></h2><p class="sec-desc">Hand-picked luxury residences designed for those who demand excellence.</p></div>
+<section class="sec s3d"><div class="s3d-inner from-bottom"><div class="sec-head"><div class="sec-tag">Featured</div><h2 class="sec-title">Premium <span class="gold">Properties</span></h2></div>
   <div class="prop-grid">
-    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🏢</div><span class="prop-badge new">New Launch</span><span class="prop-price">₹2.5 Cr</span></div><div class="prop-info"><h3 class="prop-title">The Grand Residences</h3><div class="prop-loc">📍 Bandra West, Mumbai</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>4 BHK</span><span class="feat"><span class="feat-ic">📐</span>2,800 sqft</span><span class="feat"><span class="feat-ic">🚗</span>2 Parking</span></div></div></div>
-    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a2e1a,#162e16)">🏡</div><span class="prop-badge">Premium</span><span class="prop-price">₹4.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Royal Palm Villas</h3><div class="prop-loc">📍 Whitefield, Bangalore</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>5 BHK</span><span class="feat"><span class="feat-ic">📐</span>4,500 sqft</span><span class="feat"><span class="feat-ic">🚗</span>3 Parking</span></div></div></div>
-    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#2e1a1a,#2e1616)">🏠</div><span class="prop-badge sold">Sold Out</span><span class="prop-price">₹1.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Skyline Apartments</h3><div class="prop-loc">📍 Cyber City, Gurugram</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>3 BHK</span><span class="feat"><span class="feat-ic">📐</span>1,950 sqft</span><span class="feat"><span class="feat-ic">🚗</span>2 Parking</span></div></div></div>
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🏢</div><span class="prop-badge new">New</span><span class="prop-price">₹2.5 Cr</span></div><div class="prop-info"><h3 class="prop-title">Grand Residences</h3><div class="prop-loc">📍 Bandra, Mumbai</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>4 BHK</span><span class="feat"><span class="feat-ic">📐</span>2800 sqft</span></div></div></div>
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#1a2e1a,#162e16)">🏡</div><span class="prop-badge">Premium</span><span class="prop-price">₹4.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Royal Palm Villas</h3><div class="prop-loc">📍 Whitefield, Bangalore</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>5 BHK</span><span class="feat"><span class="feat-ic">📐</span>4500 sqft</span></div></div></div>
+    <div class="prop-card parallax-3d"><div class="prop-img"><div class="prop-img-inner" style="background:linear-gradient(135deg,#2e1a1a,#2e1616)">🏠</div><span class="prop-badge sold">Sold</span><span class="prop-price">₹1.8 Cr</span></div><div class="prop-info"><h3 class="prop-title">Skyline Apartments</h3><div class="prop-loc">📍 Cyber City, Gurugram</div><div class="prop-feats"><span class="feat"><span class="feat-ic">🛏</span>3 BHK</span><span class="feat"><span class="feat-ic">📐</span>1950 sqft</span></div></div></div>
   </div>
 </div></section>
 
-<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-left">
-  <div class="sec-head"><div class="sec-tag">Why LuxeEstates</div><h2 class="sec-title">Why Families <span class="gold">Trust Us</span></h2></div>
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-left"><div class="sec-head"><div class="sec-tag">Why Us</div><h2 class="sec-title">Families <span class="gold">Trust Us</span></h2></div>
   <div class="why-grid">
-    <div class="why-card parallax-3d"><div class="why-ic">🏆</div><h3>Award Winning</h3><p>India's Best Developer for 5 consecutive years.</p></div>
-    <div class="why-card parallax-3d"><div class="why-ic">🔒</div><h3>RERA Approved</h3><p>All projects fully RERA compliant with transparency.</p></div>
-    <div class="why-card parallax-3d"><div class="why-ic">💎</div><h3>Premium Quality</h3><p>World-renowned architects & finest materials.</p></div>
-    <div class="why-card parallax-3d"><div class="why-ic">🤝</div><h3>Lifetime Support</h3><p>Dedicated managers for property management.</p></div>
-  </div>
-</div></section>
-
-<section class="sec s3d"><div class="s3d-inner from-flip">
-  <div class="showcase">
-    <div class="show-cube-wrap parallax-3d"><div class="show-cube"><div class="cface">🏠</div><div class="cface">🌆</div><div class="cface">🏡</div><div class="cface">🏢</div><div class="cface">⭐</div><div class="cface">💎</div></div></div>
-    <div class="show-content"><div class="sec-tag" style="justify-content:flex-start">Luxury Living</div><h2>Experience The <span class="gold">Art of Living</span></h2><p>Every property is a masterpiece of architectural brilliance.</p><ul class="show-list"><li>Smart Home Automation & IoT</li><li>Rooftop Infinity Pools & Sky Lounges</li><li>24/7 Concierge & Valet</li><li>World-Class Clubhouse</li><li>EV Charging & Green Certified</li></ul><a class="btn1" onclick="go('projects')">View Projects ➜</a></div>
-  </div>
-</div></section>
-
-<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-right">
-  <div class="sec-head"><div class="sec-tag">Testimonials</div><h2 class="sec-title">What Clients <span class="gold">Say</span></h2></div>
-  <div class="test-grid">
-    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"From first visit to key handover, LuxeEstates made it seamless. Quality exceeded all expectations!"</p><div class="test-author"><div class="test-av">RS</div><div><div class="test-name">Rajesh Sharma</div><div class="test-role">Business Owner, Mumbai</div></div></div></div>
-    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"ROI has been phenomenal. Transparency unmatched. Highly recommended for NRI investors!"</p><div class="test-author"><div class="test-av">PM</div><div><div class="test-name">Priya Mehta</div><div class="test-role">NRI Investor, London</div></div></div></div>
-    <div class="test-card parallax-3d"><div class="test-stars">★★★★★</div><p class="test-text">"World-class amenities. My family loves everything here. Best decision — our forever home!"</p><div class="test-author"><div class="test-av">AK</div><div><div class="test-name">Amit Kumar</div><div class="test-role">IT Director, Gurugram</div></div></div></div>
+    <div class="why-card parallax-3d"><div class="why-ic">🏆</div><h3>Award Winning</h3><p>Best Developer 5 years running.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">🔒</div><h3>RERA Approved</h3><p>100% compliant and transparent.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">💎</div><h3>Premium Quality</h3><p>World-class architects & materials.</p></div>
+    <div class="why-card parallax-3d"><div class="why-ic">🤝</div><h3>Lifetime Support</h3><p>Dedicated property management.</p></div>
   </div>
 </div></section>
 
 <section class="cta-sec s3d"><div class="cta-bg"></div><div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div>
-  <div class="s3d-inner from-zoom" style="position:relative;z-index:2"><div class="cta-content"><h2>Ready for Your <span class="gold">Dream Home?</span></h2><p>Free consultation with our property experts.</p><div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a class="btn1" onclick="go('contact')">Book Consultation ➜</a><a class="btn2" href="tel:+919876543210">📞 +91 98765 43210</a></div></div></div>
+  <div class="s3d-inner from-zoom" style="position:relative;z-index:2"><div class="cta-content"><h2>Find Your <span class="gold">Dream Home</span></h2><p>Free consultation with property experts.</p><div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a class="btn1" onclick="go('contact')">Book Now ➜</a><a class="btn2" href="tel:+919876543210">📞 Call Us</a></div></div></div>
 </section>
-
-<div class="s3d" style="position:relative;z-index:10"><div class="s3d-inner from-tilt"><div class="nws"><div><h3>Stay <span class="gold">Updated</span></h3><p>Early access to new launches & opportunities.</p></div><form class="nws-form" onsubmit="event.preventDefault();alert('Subscribed! 🎉')"><input type="email" placeholder="Your email" required><button type="submit">Subscribe</button></form></div></div></div>
-
 </div>
 
 <!-- ====== ABOUT ====== -->
 <div class="page" id="page-about">
-<section class="pg-hero"><div class="abt-3d"><div class="abt-shape"></div><div class="abt-shape"></div><div class="abt-shape"></div></div><div class="pg-hero-content"><h1>About <span class="gold">LuxeEstates</span></h1><div class="bread"><a onclick="go('home')">Home</a> / About</div></div></section>
-
-<section class="sec s3d"><div class="s3d-inner from-left"><div class="story"><div class="story-content"><div class="sec-tag" style="justify-content:flex-start">Our Story</div><h2>Building <span class="gold">Dreams</span> Since 2005</h2><p>Founded by Mr. Vikram Malhotra with a mission to create homes that inspire. 50+ landmark projects across 8 cities touching 2,000+ families.</p><p>Today, LuxeEstates pioneers sustainable development, smart home technology, and community-centric living.</p></div><div class="story-img parallax-3d"><div class="story-box">🏗️</div><div class="story-box">🌇</div></div></div></div></section>
-
-<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-spiral"><div class="sec-head"><div class="sec-tag">Foundation</div><h2 class="sec-title">Mission, Vision & <span class="gold">Values</span></h2></div><div class="mv-grid"><div class="mv-card parallax-3d"><span class="mv-ic">🎯</span><h3>Mission</h3><p>Exceptional spaces harmonizing luxury with sustainability.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">🔭</span><h3>Vision</h3><p>India's most admired real estate brand, globally recognized.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">💡</span><h3>Values</h3><p>Integrity. Excellence. Innovation. Customer-first.</p></div></div></div></section>
-
-<section class="sec s3d"><div class="s3d-inner from-swing"><div class="sec-head"><div class="sec-tag">Leadership</div><h2 class="sec-title">Our <span class="gold">Team</span></h2></div><div class="team-grid"><div class="team-card parallax-3d"><div class="team-av">VM</div><h3>Vikram Malhotra</h3><span class="role">Founder & Chairman</span><p>25+ years building premium brands.</p></div><div class="team-card parallax-3d"><div class="team-av">SK</div><h3>Sunita Kapoor</h3><span class="role">CEO & MD</span><p>Ex-McKinsey driving strategy.</p></div><div class="team-card parallax-3d"><div class="team-av">AR</div><h3>Arjun Reddy</h3><span class="role">Chief Architect</span><p>Award-winning, 12 countries.</p></div><div class="team-card parallax-3d"><div class="team-av">NP</div><h3>Neha Patel</h3><span class="role">VP Sales</span><p>Digital-first sales pioneer.</p></div></div></div></section>
-
-<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-fold"><div class="sec-head"><div class="sec-tag">Journey</div><h2 class="sec-title">Our <span class="gold">Milestones</span></h2></div><div class="tl">
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2005</div><h3>Founded</h3><p>Started in Mumbai with 5 passionate professionals.</p></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2010</div><h3>First Landmark</h3><p>40-floor Grand Tower in Mumbai.</p></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2015</div><h3>Expansion</h3><p>Bangalore, Delhi NCR, Pune. 500+ units.</p></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2020</div><h3>Innovation</h3><p>First smart township. IGBC Platinum.</p></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-content parallax-3d"><div class="tl-yr">2024</div><h3>Future</h3><p>8 cities, 50+ projects, ₹5000 Cr township.</p></div></div>
-</div></div></section>
+<section class="pg-hero"><div class="abt-3d"><div class="abt-shape"></div><div class="abt-shape"></div><div class="abt-shape"></div></div><div class="pg-hero-content"><h1>About <span class="gold">Us</span></h1><div class="bread"><a onclick="go('home')">Home</a> / About</div></div></section>
+<section class="sec s3d"><div class="s3d-inner from-left"><div class="story"><div class="story-content"><div class="sec-tag" style="justify-content:flex-start">Our Story</div><h2>Building <span class="gold">Dreams</span> Since 2005</h2><p>Founded by Vikram Malhotra. 50+ projects, 8 cities, 2000+ happy families. Pioneering sustainable, smart living.</p></div><div class="story-img parallax-3d"><div class="story-box">🏗️</div><div class="story-box">🌇</div></div></div></div></section>
+<section class="sec s3d" style="background:var(--dark2)"><div class="s3d-inner from-spiral"><div class="sec-head"><div class="sec-tag">Foundation</div><h2 class="sec-title">Mission & <span class="gold">Vision</span></h2></div><div class="mv-grid"><div class="mv-card parallax-3d"><span class="mv-ic">🎯</span><h3>Mission</h3><p>Luxury meets sustainability.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">🔭</span><h3>Vision</h3><p>India's most admired brand.</p></div><div class="mv-card parallax-3d"><span class="mv-ic">💡</span><h3>Values</h3><p>Integrity. Excellence. Innovation.</p></div></div></div></section>
+<section class="sec s3d"><div class="s3d-inner from-swing"><div class="sec-head"><div class="sec-tag">Team</div><h2 class="sec-title">Our <span class="gold">Leaders</span></h2></div><div class="team-grid"><div class="team-card parallax-3d"><div class="team-av">VM</div><h3>Vikram Malhotra</h3><span class="role">Founder</span></div><div class="team-card parallax-3d"><div class="team-av">SK</div><h3>Sunita Kapoor</h3><span class="role">CEO</span></div><div class="team-card parallax-3d"><div class="team-av">AR</div><h3>Arjun Reddy</h3><span class="role">Architect</span></div><div class="team-card parallax-3d"><div class="team-av">NP</div><h3>Neha Patel</h3><span class="role">VP Sales</span></div></div></div></section>
 </div>
 
 <!-- ====== PROJECTS ====== -->
 <div class="page" id="page-projects">
-
 <section class="pg-hero"><div class="p3d-grid" id="pGrid"></div><div class="pg-hero-content"><h1>Our <span class="gold">Projects</span></h1><div class="bread"><a onclick="go('home')">Home</a> / Projects</div></div></section>
 
-<!-- FILTERS -->
+<!-- MOBILE FILTER TOGGLE BUTTON -->
+<button class="mob-filter-toggle" id="mobFilterToggle" onclick="openMobFilter()">
+  <span class="filter-icon">
+    🔍 Filter Properties
+    <span class="filter-count" id="filterCount">0</span>
+  </span>
+</button>
+
+<!-- FILTER BAR (Full screen on mobile) -->
 <div class="flt-bar" id="filterBar">
-  <div class="flt-row">
-    <div class="flt-grp"><label>Location</label><select id="fLoc" onchange="markActive(this)"><option value="">All Locations</option><option value="mumbai">Mumbai</option><option value="bangalore">Bangalore</option><option value="delhi">Delhi NCR</option><option value="pune">Pune</option><option value="hyderabad">Hyderabad</option><option value="chennai">Chennai</option><option value="goa">Goa</option></select></div>
-    <div class="flt-grp"><label>Type</label><select id="fType" onchange="markActive(this)"><option value="">All Types</option><option value="apartment">Apartments</option><option value="villa">Villas</option><option value="penthouse">Penthouses</option><option value="commercial">Commercial</option><option value="township">Township</option><option value="plotted">Plotted</option></select></div>
-    <div class="flt-grp"><label>Budget</label><select id="fBud" onchange="markActive(this)"><option value="">Any Budget</option><option value="under1">Under ₹1 Cr</option><option value="1to3">₹1-3 Crore</option><option value="3to5">₹3-5 Crore</option><option value="5to10">₹5-10 Crore</option><option value="above10">Above ₹10 Cr</option></select></div>
-    <div class="flt-grp"><label>Status</label><select id="fStat" onchange="markActive(this)"><option value="">All Status</option><option value="ongoing">Ongoing</option><option value="completed">Completed</option><option value="upcoming">Upcoming</option></select></div>
-    <div class="flt-grp"><label>BHK</label><select id="fBHK" onchange="markActive(this)"><option value="">All BHK</option><option value="1">1 BHK</option><option value="2">2 BHK</option><option value="3">3 BHK</option><option value="4">4 BHK</option><option value="5">5+ BHK</option></select></div>
-    <div class="flt-btns">
-      <button class="flt-apply" onclick="applyFilters()">🔍 Apply</button>
-      <button class="flt-clear" onclick="clearFilters()">✕ Clear All</button>
+  <!-- Mobile header (only visible on mobile via CSS) -->
+  <div class="mob-flt-header">
+    <h3>🔍 Filter <span class="gold">Properties</span></h3>
+    <button class="mob-flt-close" onclick="closeMobFilter()">✕</button>
+  </div>
+
+  <div class="flt-inner">
+    <div class="flt-row">
+      <div class="flt-grp"><label>Location</label><select id="fLoc" onchange="markSel(this)"><option value="">All Locations</option><option value="mumbai">Mumbai</option><option value="bangalore">Bangalore</option><option value="delhi">Delhi NCR</option><option value="pune">Pune</option><option value="hyderabad">Hyderabad</option><option value="chennai">Chennai</option><option value="goa">Goa</option></select></div>
+      <div class="flt-grp"><label>Property Type</label><select id="fType" onchange="markSel(this)"><option value="">All Types</option><option value="apartment">Apartments</option><option value="villa">Villas</option><option value="penthouse">Penthouses</option><option value="commercial">Commercial</option><option value="township">Township</option><option value="plotted">Plotted</option></select></div>
+      <div class="flt-grp"><label>Budget</label><select id="fBud" onchange="markSel(this)"><option value="">Any Budget</option><option value="under1">Under ₹1 Cr</option><option value="1to3">₹1-3 Crore</option><option value="3to5">₹3-5 Crore</option><option value="5to10">₹5-10 Crore</option><option value="above10">Above ₹10 Cr</option></select></div>
+      <div class="flt-grp"><label>Status</label><select id="fStat" onchange="markSel(this)"><option value="">All Status</option><option value="ongoing">Ongoing</option><option value="completed">Completed</option><option value="upcoming">Upcoming</option></select></div>
+      <div class="flt-grp"><label>BHK</label><select id="fBHK" onchange="markSel(this)"><option value="">All BHK</option><option value="1">1 BHK</option><option value="2">2 BHK</option><option value="3">3 BHK</option><option value="4">4 BHK</option><option value="5">5+ BHK</option></select></div>
     </div>
+    <div class="flt-tags" id="tagBar">
+      <span class="flt-tag active" data-tag="" onclick="setTag(this)">All</span>
+      <span class="flt-tag" data-tag="luxury" onclick="setTag(this)">Luxury</span>
+      <span class="flt-tag" data-tag="affordable" onclick="setTag(this)">Affordable</span>
+      <span class="flt-tag" data-tag="waterfront" onclick="setTag(this)">Waterfront</span>
+      <span class="flt-tag" data-tag="golf" onclick="setTag(this)">Golf View</span>
+      <span class="flt-tag" data-tag="smart" onclick="setTag(this)">Smart Homes</span>
+      <span class="flt-tag" data-tag="eco" onclick="setTag(this)">Eco-Friendly</span>
+    </div>
+    <div class="active-filters" id="activeFilters"></div>
   </div>
-  <div class="flt-tags" id="tagBar">
-    <span class="flt-tag active" data-tag="" onclick="setTag(this)">All</span>
-    <span class="flt-tag" data-tag="luxury" onclick="setTag(this)">Luxury</span>
-    <span class="flt-tag" data-tag="affordable" onclick="setTag(this)">Affordable</span>
-    <span class="flt-tag" data-tag="waterfront" onclick="setTag(this)">Waterfront</span>
-    <span class="flt-tag" data-tag="golf" onclick="setTag(this)">Golf View</span>
-    <span class="flt-tag" data-tag="smart" onclick="setTag(this)">Smart Homes</span>
-    <span class="flt-tag" data-tag="eco" onclick="setTag(this)">Eco-Friendly</span>
+
+  <div class="flt-btns">
+    <button class="flt-apply" onclick="applyAndClose()">✓ Apply Filters</button>
+    <button class="flt-clear" onclick="clearAndClose()">✕ Clear All Filters</button>
   </div>
-  <div class="active-filters" id="activeFilters"></div>
 </div>
 
 <!-- PROJECTS GRID -->
@@ -603,126 +713,75 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
     <div class="proj-results">
       <div class="res-count">Showing <span id="pShowing">0</span> of <span id="pTotal">0</span> projects</div>
     </div>
-
-    <!-- NO RESULTS -->
-    <div class="no-results" id="noResults">
-      <span class="nr-icon">🔍</span>
-      <h3>No Projects Found</h3>
-      <p>Try adjusting your filters to find properties.</p>
-      <button class="btn1" onclick="clearFilters()">Clear All Filters</button>
-    </div>
-
+    <div class="no-results" id="noResults"><span class="nr-icon">🔍</span><h3>No Projects Found</h3><p>Try adjusting your filters.</p><button class="btn1" onclick="clearAndClose()">Clear Filters</button></div>
     <div class="proj-grid" id="projGrid">
 
-      <!-- 1 -->
       <div class="proj-card parallax-3d" data-loc="mumbai" data-type="apartment" data-status="ongoing" data-budget="3to5" data-bhk="4" data-tags="luxury,smart">
         <div class="proj-img"><div class="proj-img-inner">🏢</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">The Grand Residences</h3><div class="proj-loc">📍 Bandra West, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1800-2800 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>45 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹3.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.1L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">The Grand Residences</h3><div class="proj-loc">📍 Bandra, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1800-2800 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹3.5 Cr</div><div class="proj-emi">EMI: <span>₹2.1L</span></div></div></div>
       </div>
-      <!-- 2 -->
       <div class="proj-card parallax-3d" data-loc="bangalore" data-type="villa" data-status="completed" data-budget="5to10" data-bhk="5" data-tags="luxury,eco,smart">
         <div class="proj-img"><div class="proj-img-inner">🏡</div><span class="proj-status st-done">Completed</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Royal Palm Villas</h3><div class="proj-loc">📍 Whitefield, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>3500-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>120 Villas</span></div><div class="proj-price-row"><div class="proj-price">₹5.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹3.1L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Royal Palm Villas</h3><div class="proj-loc">📍 Whitefield, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>3500-5000 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹5.2 Cr</div><div class="proj-emi">EMI: <span>₹3.1L</span></div></div></div>
       </div>
-      <!-- 3 -->
       <div class="proj-card parallax-3d" data-loc="delhi" data-type="apartment" data-status="ongoing" data-budget="1to3" data-bhk="3" data-tags="smart,affordable">
         <div class="proj-img"><div class="proj-img-inner">🌆</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Skyline Heights</h3><div class="proj-loc">📍 Sector 128, Noida</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1200-1950 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>35 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹1.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.08L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Skyline Heights</h3><div class="proj-loc">📍 Noida, Delhi NCR</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1200-1950 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹1.8 Cr</div><div class="proj-emi">EMI: <span>₹1.08L</span></div></div></div>
       </div>
-      <!-- 4 -->
       <div class="proj-card parallax-3d" data-loc="pune" data-type="township" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,eco">
         <div class="proj-img"><div class="proj-img-inner">🏘️</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Township</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">LuxeCity Township</h3><div class="proj-loc">📍 Hinjewadi, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>980-2500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>200 Acres</span></div><div class="proj-price-row"><div class="proj-price">₹95 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹57K/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">LuxeCity Township</h3><div class="proj-loc">📍 Hinjewadi, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>980-2500 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹95 L</div><div class="proj-emi">EMI: <span>₹57K</span></div></div></div>
       </div>
-      <!-- 5 -->
       <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="penthouse" data-status="ongoing" data-budget="5to10" data-bhk="5" data-tags="luxury,waterfront">
         <div class="proj-img"><div class="proj-img-inner">🌃</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">The Crown Penthouse</h3><div class="proj-loc">📍 Jubilee Hills, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Duplex</span><span class="proj-det"><span class="proj-det-ic">📐</span>6000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏊</span>Private Pool</span></div><div class="proj-price-row"><div class="proj-price">₹8.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹5.1L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Crown Penthouse</h3><div class="proj-loc">📍 Jubilee Hills, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Duplex</span><span class="proj-det"><span class="proj-det-ic">📐</span>6000 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹8.5 Cr</div><div class="proj-emi">EMI: <span>₹5.1L</span></div></div></div>
       </div>
-      <!-- 6 -->
       <div class="proj-card parallax-3d" data-loc="mumbai" data-type="commercial" data-status="completed" data-budget="3to5" data-bhk="" data-tags="luxury,smart">
         <div class="proj-img"><div class="proj-img-inner">🏦</div><span class="proj-status st-done">Completed</span><span class="proj-type">Commercial</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Luxe Business Hub</h3><div class="proj-loc">📍 BKC, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🏢</span>Offices</span><span class="proj-det"><span class="proj-det-ic">📐</span>500-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>30 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹3.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.92L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Luxe Business Hub</h3><div class="proj-loc">📍 BKC, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🏢</span>Offices</span><span class="proj-det"><span class="proj-det-ic">📐</span>500-5000 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹3.2 Cr</div><div class="proj-emi">EMI: <span>₹1.92L</span></div></div></div>
       </div>
-      <!-- 7 -->
       <div class="proj-card parallax-3d" data-loc="chennai" data-type="apartment" data-status="upcoming" data-budget="1to3" data-bhk="3" data-tags="waterfront,eco">
         <div class="proj-img"><div class="proj-img-inner">🌊</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Marina Bay Towers</h3><div class="proj-loc">📍 ECR Road, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1100-1800 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Sea Facing</span></div><div class="proj-price-row"><div class="proj-price">₹1.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹90K/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Marina Bay Towers</h3><div class="proj-loc">📍 ECR, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Sea View</span></div><div class="proj-price-row"><div class="proj-price">₹1.5 Cr</div><div class="proj-emi">EMI: <span>₹90K</span></div></div></div>
       </div>
-      <!-- 8 -->
       <div class="proj-card parallax-3d" data-loc="bangalore" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="3" data-tags="eco,affordable">
         <div class="proj-img"><div class="proj-img-inner">🌳</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Green Valley Homes</h3><div class="proj-loc">📍 Sarjapur Road, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1050-1650 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Eco-Friendly</span></div><div class="proj-price-row"><div class="proj-price">₹1.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹72K/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Green Valley Homes</h3><div class="proj-loc">📍 Sarjapur, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Eco-Friendly</span></div><div class="proj-price-row"><div class="proj-price">₹1.2 Cr</div><div class="proj-emi">EMI: <span>₹72K</span></div></div></div>
       </div>
-      <!-- 9 -->
       <div class="proj-card parallax-3d" data-loc="delhi" data-type="villa" data-status="ongoing" data-budget="5to10" data-bhk="4" data-tags="luxury,golf">
         <div class="proj-img"><div class="proj-img-inner">⛳</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Golf Estate Villas</h3><div class="proj-loc">📍 Sector 65, Gurugram</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>4000-6500 sqft</span><span class="proj-det"><span class="proj-det-ic">⛳</span>Golf View</span></div><div class="proj-price-row"><div class="proj-price">₹7.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹4.5L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Golf Estate Villas</h3><div class="proj-loc">📍 Sector 65, Gurugram</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>4-5 BHK</span><span class="proj-det"><span class="proj-det-ic">⛳</span>Golf View</span></div><div class="proj-price-row"><div class="proj-price">₹7.5 Cr</div><div class="proj-emi">EMI: <span>₹4.5L</span></div></div></div>
       </div>
-      <!-- 10 -->
       <div class="proj-card parallax-3d" data-loc="mumbai" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="2" data-tags="affordable,smart">
         <div class="proj-img"><div class="proj-img-inner">🌇</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Horizon Heights</h3><div class="proj-loc">📍 Andheri East, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-2 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>650-1100 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>28 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹1.1 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹66K/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Horizon Heights</h3><div class="proj-loc">📍 Andheri, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-2 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>650-1100 sqft</span></div><div class="proj-price-row"><div class="proj-price">₹1.1 Cr</div><div class="proj-emi">EMI: <span>₹66K</span></div></div></div>
       </div>
-      <!-- 11 -->
       <div class="proj-card parallax-3d" data-loc="pune" data-type="villa" data-status="ongoing" data-budget="3to5" data-bhk="4" data-tags="luxury,eco">
         <div class="proj-img"><div class="proj-img-inner">🏕️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Woodland Estates</h3><div class="proj-loc">📍 Koregaon Park, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>2800-4200 sqft</span><span class="proj-det"><span class="proj-det-ic">🌲</span>42 Villas</span></div><div class="proj-price-row"><div class="proj-price">₹3.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.28L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Woodland Estates</h3><div class="proj-loc">📍 Koregaon Park, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3-4 BHK</span><span class="proj-det"><span class="proj-det-ic">🌲</span>42 Villas</span></div><div class="proj-price-row"><div class="proj-price">₹3.8 Cr</div><div class="proj-emi">EMI: <span>₹2.28L</span></div></div></div>
       </div>
-      <!-- 12 -->
-      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="apartment" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,smart">
-        <div class="proj-img"><div class="proj-img-inner">🏙️</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Metro Edge Homes</h3><div class="proj-loc">📍 Gachibowli, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>900-1400 sqft</span><span class="proj-det"><span class="proj-det-ic">🚇</span>Metro Connected</span></div><div class="proj-price-row"><div class="proj-price">₹78 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹47K/mo</span></div></div></div>
-      </div>
-      <!-- 13 -->
       <div class="proj-card parallax-3d" data-loc="goa" data-type="villa" data-status="ongoing" data-budget="3to5" data-bhk="3" data-tags="luxury,waterfront">
         <div class="proj-img"><div class="proj-img-inner">🏖️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Villa</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Goa Oceanfront Villas</h3><div class="proj-loc">📍 Candolim, Goa</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>2200-3000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Beach Access</span></div><div class="proj-price-row"><div class="proj-price">₹4.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.7L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Goa Oceanfront</h3><div class="proj-loc">📍 Candolim, Goa</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>3 BHK</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Beach Access</span></div><div class="proj-price-row"><div class="proj-price">₹4.5 Cr</div><div class="proj-emi">EMI: <span>₹2.7L</span></div></div></div>
       </div>
-      <!-- 14 -->
-      <div class="proj-card parallax-3d" data-loc="chennai" data-type="plotted" data-status="completed" data-budget="under1" data-bhk="" data-tags="affordable">
-        <div class="proj-img"><div class="proj-img-inner">📐</div><span class="proj-status st-done">Completed</span><span class="proj-type">Plotted</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Luxe Meadows Plots</h3><div class="proj-loc">📍 OMR, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">📏</span>1200-2400 sqft</span><span class="proj-det"><span class="proj-det-ic">🛣️</span>60ft Roads</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Gated</span></div><div class="proj-price-row"><div class="proj-price">₹45 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹27K/mo</span></div></div></div>
+      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="apartment" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,smart">
+        <div class="proj-img"><div class="proj-img-inner">🏙️</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Metro Edge Homes</h3><div class="proj-loc">📍 Gachibowli, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">🚇</span>Metro Connected</span></div><div class="proj-price-row"><div class="proj-price">₹78 L</div><div class="proj-emi">EMI: <span>₹47K</span></div></div></div>
       </div>
-      <!-- 15 -->
       <div class="proj-card parallax-3d" data-loc="bangalore" data-type="penthouse" data-status="ongoing" data-budget="above10" data-bhk="5" data-tags="luxury,smart">
         <div class="proj-img"><div class="proj-img-inner">👑</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Sky Palace Penthouse</h3><div class="proj-loc">📍 Indiranagar, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Triplex</span><span class="proj-det"><span class="proj-det-ic">📐</span>8500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏊</span>Rooftop Pool</span></div><div class="proj-price-row"><div class="proj-price">₹12.5 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹7.5L/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">Sky Palace</h3><div class="proj-loc">📍 Indiranagar, Bangalore</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK Triplex</span><span class="proj-det"><span class="proj-det-ic">🏊</span>Rooftop Pool</span></div><div class="proj-price-row"><div class="proj-price">₹12.5 Cr</div><div class="proj-emi">EMI: <span>₹7.5L</span></div></div></div>
       </div>
-      <!-- 16 -->
-      <div class="proj-card parallax-3d" data-loc="delhi" data-type="apartment" data-status="completed" data-budget="1to3" data-bhk="3" data-tags="affordable,eco">
-        <div class="proj-img"><div class="proj-img-inner">🏢</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Emerald Greens</h3><div class="proj-loc">📍 Dwarka, New Delhi</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>2-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>1100-1800 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>IGBC Gold</span></div><div class="proj-price-row"><div class="proj-price">₹1.4 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹84K/mo</span></div></div></div>
+      <div class="proj-card parallax-3d" data-loc="chennai" data-type="plotted" data-status="completed" data-budget="under1" data-bhk="" data-tags="affordable">
+        <div class="proj-img"><div class="proj-img-inner">📐</div><span class="proj-status st-done">Completed</span><span class="proj-type">Plotted</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
+        <div class="proj-info"><h3 class="proj-title">Luxe Meadows</h3><div class="proj-loc">📍 OMR, Chennai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">📏</span>1200-2400 sqft</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Gated</span></div><div class="proj-price-row"><div class="proj-price">₹45 L</div><div class="proj-emi">EMI: <span>₹27K</span></div></div></div>
       </div>
-      <!-- 17 -->
-      <div class="proj-card parallax-3d" data-loc="mumbai" data-type="penthouse" data-status="upcoming" data-budget="above10" data-bhk="5" data-tags="luxury,waterfront">
-        <div class="proj-img"><div class="proj-img-inner">🌅</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Penthouse</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Sea Crown Ultra</h3><div class="proj-loc">📍 Worli Sea Face, Mumbai</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>5 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>10000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>Sea View</span></div><div class="proj-price-row"><div class="proj-price">₹25 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹15L/mo</span></div></div></div>
-      </div>
-      <!-- 18 -->
-      <div class="proj-card parallax-3d" data-loc="pune" data-type="apartment" data-status="completed" data-budget="under1" data-bhk="1" data-tags="affordable">
-        <div class="proj-img"><div class="proj-img-inner">🏠</div><span class="proj-status st-done">Completed</span><span class="proj-type">Apartment</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Starter Homes Pune</h3><div class="proj-loc">📍 Wakad, Pune</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-2 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>550-850 sqft</span><span class="proj-det"><span class="proj-det-ic">🚇</span>Metro Adj</span></div><div class="proj-price-row"><div class="proj-price">₹42 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹25K/mo</span></div></div></div>
-      </div>
-      <!-- 19 -->
-      <div class="proj-card parallax-3d" data-loc="goa" data-type="plotted" data-status="upcoming" data-budget="1to3" data-bhk="" data-tags="waterfront,eco">
-        <div class="proj-img"><div class="proj-img-inner">🌴</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Plotted</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Goa Paradise Plots</h3><div class="proj-loc">📍 Assagao, Goa</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">📏</span>2000-5000 sqft</span><span class="proj-det"><span class="proj-det-ic">🌊</span>River View</span><span class="proj-det"><span class="proj-det-ic">🌿</span>Organic</span></div><div class="proj-price-row"><div class="proj-price">₹1.8 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹1.08L/mo</span></div></div></div>
-      </div>
-      <!-- 20 -->
-      <div class="proj-card parallax-3d" data-loc="hyderabad" data-type="commercial" data-status="ongoing" data-budget="3to5" data-bhk="" data-tags="smart">
-        <div class="proj-img"><div class="proj-img-inner">🏗️</div><span class="proj-status st-on">Ongoing</span><span class="proj-type">Commercial</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">Tech Park Central</h3><div class="proj-loc">📍 HITEC City, Hyderabad</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🏢</span>IT/Office</span><span class="proj-det"><span class="proj-det-ic">📐</span>1000-8000 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>25 Floors</span></div><div class="proj-price-row"><div class="proj-price">₹4.2 Cr <small>onwards</small></div><div class="proj-emi">EMI: <span>₹2.52L/mo</span></div></div></div>
-      </div>
-      <!-- 21 -->
       <div class="proj-card parallax-3d" data-loc="delhi" data-type="township" data-status="upcoming" data-budget="under1" data-bhk="2" data-tags="affordable,eco,smart">
         <div class="proj-img"><div class="proj-img-inner">🌆</div><span class="proj-status st-up">Upcoming</span><span class="proj-type">Township</span><div class="proj-overlay"><button class="proj-overlay-btn">View Details</button></div></div>
-        <div class="proj-info"><h3 class="proj-title">NCR Smart City</h3><div class="proj-loc">📍 Greater Noida</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-3 BHK</span><span class="proj-det"><span class="proj-det-ic">📐</span>500-1500 sqft</span><span class="proj-det"><span class="proj-det-ic">🏗</span>500 Acres</span></div><div class="proj-price-row"><div class="proj-price">₹35 L <small>onwards</small></div><div class="proj-emi">EMI: <span>₹21K/mo</span></div></div></div>
+        <div class="proj-info"><h3 class="proj-title">NCR Smart City</h3><div class="proj-loc">📍 Greater Noida</div><div class="proj-dets"><span class="proj-det"><span class="proj-det-ic">🛏</span>1-3 BHK</span><span class="proj-det"><span class="proj-det-ic">🏗</span>500 Acres</span></div><div class="proj-price-row"><div class="proj-price">₹35 L</div><div class="proj-emi">EMI: <span>₹21K</span></div></div></div>
       </div>
 
     </div>
-
-    <!-- PAGINATION -->
     <div class="pgn" id="pagination"></div>
   </div>
 </div>
@@ -731,47 +790,24 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 <!-- ====== CONTACT ====== -->
 <div class="page" id="page-contact">
 <section class="pg-hero"><div class="globe-3d"></div><div class="pg-hero-content"><h1>Contact <span class="gold">Us</span></h1><div class="bread"><a onclick="go('home')">Home</a> / Contact</div></div></section>
-
 <section class="sec s3d"><div class="s3d-inner from-bottom">
-  <div class="sec-head"><div class="sec-tag">Get In Touch</div><h2 class="sec-title">We'd Love to <span class="gold">Hear From You</span></h2></div>
+  <div class="sec-head"><div class="sec-tag">Get In Touch</div><h2 class="sec-title">We'd Love to <span class="gold">Hear</span></h2></div>
   <div class="ct-grid">
     <div class="ct-cards">
-      <div class="ct-card parallax-3d"><div class="ct-ic">📍</div><div><h4>Head Office</h4><p>LuxeEstates Tower, 15th Floor, BKC, Mumbai</p></div></div>
-      <div class="ct-card parallax-3d"><div class="ct-ic">📞</div><div><h4>Phone</h4><p>Sales: +91 98765 43210<br>Toll Free: 1800-123-4567</p></div></div>
-      <div class="ct-card parallax-3d"><div class="ct-ic">✉️</div><div><h4>Email</h4><p>sales@luxeestates.com<br>care@luxeestates.com</p></div></div>
-      <div class="ct-card parallax-3d"><div class="ct-ic">🕐</div><div><h4>Hours</h4><p>Mon-Sat: 9AM-8PM | Sun: 10AM-5PM</p></div></div>
-      <div class="ct-card parallax-3d"><div class="ct-ic">💬</div><div><h4>WhatsApp</h4><p>Instant response under 2 minutes</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">📍</div><div><h4>Office</h4><p>BKC Tower, Mumbai</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">📞</div><div><h4>Phone</h4><p>+91 98765 43210</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">✉️</div><div><h4>Email</h4><p>sales@luxeestates.com</p></div></div>
+      <div class="ct-card parallax-3d"><div class="ct-ic">🕐</div><div><h4>Hours</h4><p>Mon-Sat 9AM-8PM</p></div></div>
     </div>
-    <div class="ct-form parallax-3d"><h3>Send a <span class="gold">Message</span></h3>
-      <form onsubmit="event.preventDefault();alert('Thank you! We\'ll contact you within 24 hours 🏠')">
-        <div class="fr"><div class="fg"><label>First Name *</label><input required placeholder="First name"></div><div class="fg"><label>Last Name *</label><input required placeholder="Last name"></div></div>
-        <div class="fr"><div class="fg"><label>Email *</label><input type="email" required placeholder="Email"></div><div class="fg"><label>Phone *</label><input type="tel" required placeholder="+91"></div></div>
-        <div class="fg"><label>Interested In</label><select><option>Select type</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Commercial</option><option>Investment</option></select></div>
-        <div class="fr"><div class="fg"><label>City</label><select><option>Select</option><option>Mumbai</option><option>Bangalore</option><option>Delhi</option><option>Pune</option><option>Hyderabad</option><option>Chennai</option><option>Goa</option></select></div><div class="fg"><label>Budget</label><select><option>Select</option><option>Under ₹1 Cr</option><option>₹1-3 Cr</option><option>₹3-5 Cr</option><option>₹5+ Cr</option></select></div></div>
-        <div class="fg"><label>Message</label><textarea placeholder="Your requirements..."></textarea></div>
-        <button type="submit" class="f-sub">Send Message ➜</button>
+    <div class="ct-form parallax-3d"><h3>Send <span class="gold">Message</span></h3>
+      <form onsubmit="event.preventDefault();alert('Thank you! 🏠')">
+        <div class="fr"><div class="fg"><label>Name *</label><input required placeholder="Name"></div><div class="fg"><label>Phone *</label><input required placeholder="+91"></div></div>
+        <div class="fg"><label>Email *</label><input type="email" required placeholder="Email"></div>
+        <div class="fg"><label>Interested In</label><select><option>Select</option><option>Apartment</option><option>Villa</option><option>Commercial</option></select></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Requirements..."></textarea></div>
+        <button type="submit" class="f-sub">Send ➜</button>
       </form>
     </div>
-  </div>
-</div></section>
-
-<section class="map-sec s3d"><div class="s3d-inner from-right">
-  <div class="sec-head"><div class="sec-tag">Locations</div><h2 class="sec-title">Find Us <span class="gold">Near You</span></h2></div>
-  <div class="map-box parallax-3d"><div class="map-ph"><span class="map-ic">🗺️</span><p>Interactive Map — 7 Cities | 8 Offices</p></div></div>
-  <div class="off-grid">
-    <div class="off-card parallax-3d"><h4>Mumbai HQ</h4><span class="city">Maharashtra</span><p>BKC Tower | 📞 +91 22 4567 8900</p></div>
-    <div class="off-card parallax-3d"><h4>Bangalore</h4><span class="city">Karnataka</span><p>Brigade Gateway | 📞 +91 80 4567 8901</p></div>
-    <div class="off-card parallax-3d"><h4>Delhi NCR</h4><span class="city">Haryana</span><p>Cyber Hub, Gurugram | 📞 +91 124 456 7890</p></div>
-  </div>
-</div></section>
-
-<section class="sec s3d"><div class="s3d-inner from-tilt">
-  <div class="sec-head"><div class="sec-tag">FAQ</div><h2 class="sec-title">Common <span class="gold">Questions</span></h2></div>
-  <div style="max-width:800px;margin:0 auto">
-    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Are projects RERA approved?<span>+</span></div><div class="faq-a">Yes, 100% RERA registered and compliant. Full transparency guaranteed.</div></div>
-    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Home loan assistance available?<span>+</span></div><div class="faq-a">Tie-ups with 15+ banks including SBI, HDFC, ICICI for best rates.</div></div>
-    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Can NRIs invest?<span>+</span></div><div class="faq-a">Yes! Dedicated NRI desk with virtual tours, POA, and property management.</div></div>
-    <div class="faq-item parallax-3d" onclick="this.classList.toggle('open')"><div class="faq-q">Possession track record?<span>+</span></div><div class="faq-a">95% on-time delivery. Live CCTV access and regular updates for buyers.</div></div>
   </div>
 </div></section>
 </div>
@@ -779,322 +815,303 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--white);
 <!-- FOOTER -->
 <footer class="footer s3d"><div class="s3d-inner from-fold">
   <div class="ft-grid">
-    <div class="ft-brand"><a class="logo" onclick="go('home')">Luxe<span>Estates</span></a><p>India's premier luxury real estate developer since 2005. RERA registered. Award-winning.</p><div class="soc"><a href="#">f</a><a href="#">in</a><a href="#">X</a><a href="#">▶</a><a href="#">📷</a></div></div>
+    <div class="ft-brand"><a class="logo" onclick="go('home')">Luxe<span>Estates</span></a><p>India's premier luxury developer since 2005.</p><div class="soc"><a>f</a><a>in</a><a>X</a><a>▶</a></div></div>
     <div class="ft-col"><h4>Links</h4><ul><li><a onclick="go('home')">➤ Home</a></li><li><a onclick="go('about')">➤ About</a></li><li><a onclick="go('projects')">➤ Projects</a></li><li><a onclick="go('contact')">➤ Contact</a></li></ul></div>
-    <div class="ft-col"><h4>Cities</h4><ul><li><a>➤ Mumbai</a></li><li><a>➤ Bangalore</a></li><li><a>➤ Delhi NCR</a></li><li><a>➤ Pune</a></li><li><a>➤ Hyderabad</a></li><li><a>➤ Goa</a></li></ul></div>
-    <div class="ft-col"><h4>Contact</h4><ul><li><a>📍 BKC, Mumbai</a></li><li><a href="tel:+919876543210">📞 +91 98765 43210</a></li><li><a>✉️ sales@luxeestates.com</a></li><li><a>🕐 Mon-Sat 9AM-8PM</a></li></ul></div>
+    <div class="ft-col"><h4>Cities</h4><ul><li><a>➤ Mumbai</a></li><li><a>➤ Bangalore</a></li><li><a>➤ Delhi NCR</a></li><li><a>➤ Pune</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a>📞 +91 98765 43210</a></li><li><a>✉️ sales@luxeestates.com</a></li></ul></div>
   </div>
-  <div class="ft-btm"><p>© 2024 LuxeEstates. All rights reserved.</p><p>Privacy | Terms | RERA Registered</p></div>
+  <div class="ft-btm"><p>© 2024 LuxeEstates. RERA Registered.</p><p>Privacy | Terms</p></div>
 </div></footer>
 
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-// ===== LOADER =====
+// LOADER
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1500));
 
-// ===== CURSOR =====
+// CURSOR
 const cur=document.getElementById('cur'),curD=document.getElementById('curD');
 let mx=0,my=0,cx=0,cy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curD.style.left=mx-2.5+'px';curD.style.top=my-2.5+'px'});
 (function ac(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cur.style.left=cx-11+'px';cur.style.top=cy-11+'px';requestAnimationFrame(ac)})();
 
-// ===== NAV =====
+// NAV
 window.addEventListener('scroll',()=>{
   const s=window.scrollY;
   document.getElementById('nav').classList.toggle('scrolled',s>50);
   document.getElementById('btt').classList.toggle('visible',s>500);
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('scrollBar').style.width=(h>0?s/h*100:0)+'%';
+  document.getElementById('scrollBar').style.width=h>0?(s/h*100)+'%':'0%';
   const hc=document.getElementById('heroContent');
   if(hc&&document.getElementById('page-home').classList.contains('active')){
     hc.style.transform=`translateY(${s*.3}px)`;hc.style.opacity=Math.max(0,1-s/700);
   }
 });
 
-// ===== PAGES =====
+// PAGE NAV
 function go(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-links a[data-p]').forEach(a=>a.classList.toggle('active',a.dataset.p===p));
   window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>{initObs();if(p==='home')animCount();if(p==='projects'){clearFilters();}},200);
+  setTimeout(()=>{initObs();if(p==='home')animCount();if(p==='projects')initProjects()},200);
 }
 function togMob(){document.getElementById('ham').classList.toggle('active');document.getElementById('mobMenu').classList.toggle('active')}
 
-// ===== PARTICLES =====
+// PARTICLES
 const pc=document.getElementById('ptcls');
-for(let i=0;i<50;i++){const d=document.createElement('div');d.className='ptcl';d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*10}s;animation-duration:${6+Math.random()*12}s`;pc.appendChild(d)}
+for(let i=0;i<40;i++){const d=document.createElement('div');d.className='ptcl';d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*10}s;animation-duration:${6+Math.random()*12}s`;pc.appendChild(d)}
 
-// ===== WINDOWS =====
+// WINDOWS
 ['wg1','wg2'].forEach(id=>{const g=document.getElementById(id);if(g)for(let i=0;i<32;i++){const w=document.createElement('div');w.className='wc';w.style.setProperty('--d',Math.random()*5+'s');g.appendChild(w)}});
 
-// ===== PROJECTS GRID BG =====
+// GRID BG
 const pg=document.getElementById('pGrid');
 if(pg)for(let i=0;i<100;i++){const c=document.createElement('div');c.className='gc';c.style.setProperty('--d',Math.random()*3+'s');pg.appendChild(c)}
 
-// ===== COUNTER =====
+// COUNTER
 function animCount(){document.querySelectorAll('.st-num').forEach(c=>{const t=+c.dataset.c;let v=0;const s=t/(2000/16);const tm=setInterval(()=>{v+=s;if(v>=t){c.textContent=t+'+';clearInterval(tm)}else c.textContent=Math.floor(v)+'+'},16)})}
 
-// ===== 3D SCROLL =====
+// 3D SCROLL
 function initObs(){
   const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view')})},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
   document.querySelectorAll('.s3d-inner').forEach(el=>{el.classList.remove('in-view');obs.observe(el)});
-  setupP3D();
-}
-function setupP3D(){
-  const els=document.querySelectorAll('.parallax-3d');
-  (function upd(){
-    const wh=window.innerHeight;
-    els.forEach(el=>{
-      const r=el.getBoundingClientRect();
-      if(r.top<wh&&r.bottom>0){
-        const off=(r.top+r.height/2-wh/2)/(wh/2);
-        el.style.transform=`perspective(1000px) rotateX(${off*6}deg) rotateY(${off*-4}deg) translateZ(${Math.abs(off)*-20}px) scale(${Math.max(1-Math.abs(off)*.04,.92)})`;
-      }
-    });
-    requestAnimationFrame(upd);
-  })();
 }
 
-// ===== MOUSE TILT =====
-document.addEventListener('mousemove',e=>{
-  document.querySelectorAll('.prop-card,.proj-card:not(.hidden),.why-card,.test-card,.mv-card,.team-card,.ct-card,.off-card,.faq-item,.tl-content').forEach(c=>{
-    const r=c.getBoundingClientRect();
-    const x=e.clientX-r.left,y=e.clientY-r.top;
-    if(x>=0&&x<=r.width&&y>=0&&y<=r.height){
-      c.style.transform=`perspective(800px) rotateX(${-(y-r.height/2)/15}deg) rotateY(${(x-r.width/2)/15}deg) translateZ(15px) translateY(-8px)`;
-      c.style.boxShadow=`${-(x-r.width/2)/10}px ${(y-r.height/2)/10}px 40px rgba(201,168,76,.15)`;
-    }
-  });
-});
-document.addEventListener('mouseover',()=>{
-  document.querySelectorAll('.prop-card,.proj-card,.why-card,.test-card,.mv-card,.team-card,.ct-card,.off-card,.faq-item,.tl-content').forEach(c=>{
-    c.onmouseleave=()=>{c.style.transform='';c.style.boxShadow=''};
-  });
-});
+// ============================================
+// MOBILE FILTER TOGGLE SYSTEM
+// ============================================
 
-// ===== VELOCITY SKEW =====
-let psc=0;
-(function tv(){
-  const v=window.scrollY-psc;psc=window.scrollY;
-  const ap=document.querySelector('.page.active');
-  if(ap){ap.style.transform=`perspective(2000px) rotateX(${Math.max(-2,Math.min(2,v*.06))}deg)`;ap.style.transition='transform .3s ease-out'}
-  requestAnimationFrame(tv);
-})();
+function isMobile(){
+  return window.innerWidth <= 768;
+}
 
-// ============================================================
-// ===== FILTER & PAGINATION SYSTEM (FULLY WORKING) =====
-// ============================================================
+function openMobFilter(){
+  document.getElementById('filterBar').classList.add('mob-open');
+  document.body.style.overflow = 'hidden'; // Lock scroll
+}
+
+function closeMobFilter(){
+  document.getElementById('filterBar').classList.remove('mob-open');
+  document.body.style.overflow = ''; // Unlock scroll
+}
+
+function applyAndClose(){
+  applyFilters();
+  if(isMobile()) closeMobFilter();
+}
+
+function clearAndClose(){
+  clearFilters();
+  if(isMobile()) closeMobFilter();
+}
+
+function updateMobToggleCount(){
+  const selIds = ['fLoc','fType','fBud','fStat','fBHK'];
+  let count = 0;
+  selIds.forEach(id => { if(document.getElementById(id).value) count++; });
+  if(activeTag) count++;
+
+  const toggle = document.getElementById('mobFilterToggle');
+  const countEl = document.getElementById('filterCount');
+
+  if(count > 0){
+    toggle.classList.add('has-filters');
+    countEl.textContent = count;
+    toggle.querySelector('.filter-icon').innerHTML = `🔍 Filters Active <span class="filter-count" id="filterCount" style="display:inline-flex">${count}</span>`;
+  } else {
+    toggle.classList.remove('has-filters');
+    toggle.querySelector('.filter-icon').innerHTML = `🔍 Filter Properties <span class="filter-count" id="filterCount">0</span>`;
+  }
+}
+
+// ============================================
+// FILTER + PAGINATION ENGINE
+// ============================================
 
 const PER_PAGE = 6;
 let currentPage = 1;
 let filteredCards = [];
 let activeTag = '';
 
-// Filter labels for chips
 const filterLabels = {
-  fLoc: {mumbai:'Mumbai',bangalore:'Bangalore',delhi:'Delhi NCR',pune:'Pune',hyderabad:'Hyderabad',chennai:'Chennai',goa:'Goa'},
-  fType: {apartment:'Apartment',villa:'Villa',penthouse:'Penthouse',commercial:'Commercial',township:'Township',plotted:'Plotted'},
-  fBud: {under1:'Under ₹1 Cr','1to3':'₹1-3 Cr','3to5':'₹3-5 Cr','5to10':'₹5-10 Cr',above10:'Above ₹10 Cr'},
-  fStat: {ongoing:'Ongoing',completed:'Completed',upcoming:'Upcoming'},
-  fBHK: {'1':'1 BHK','2':'2 BHK','3':'3 BHK','4':'4 BHK','5':'5+ BHK'}
+  fLoc:{mumbai:'Mumbai',bangalore:'Bangalore',delhi:'Delhi NCR',pune:'Pune',hyderabad:'Hyderabad',chennai:'Chennai',goa:'Goa'},
+  fType:{apartment:'Apartment',villa:'Villa',penthouse:'Penthouse',commercial:'Commercial',township:'Township',plotted:'Plotted'},
+  fBud:{under1:'Under ₹1Cr','1to3':'₹1-3Cr','3to5':'₹3-5Cr','5to10':'₹5-10Cr',above10:'₹10Cr+'},
+  fStat:{ongoing:'Ongoing',completed:'Completed',upcoming:'Upcoming'},
+  fBHK:{'1':'1 BHK','2':'2 BHK','3':'3 BHK','4':'4 BHK','5':'5+ BHK'}
 };
 
-function markActive(sel){
-  sel.classList.toggle('has-value',sel.value!=='');
-}
+function markSel(s){ s.classList.toggle('has-value',s.value!==''); }
 
 function getFilters(){
   return {
-    loc: document.getElementById('fLoc').value,
-    type: document.getElementById('fType').value,
-    budget: document.getElementById('fBud').value,
-    status: document.getElementById('fStat').value,
-    bhk: document.getElementById('fBHK').value,
-    tag: activeTag
+    loc:document.getElementById('fLoc').value,
+    type:document.getElementById('fType').value,
+    budget:document.getElementById('fBud').value,
+    status:document.getElementById('fStat').value,
+    bhk:document.getElementById('fBHK').value,
+    tag:activeTag
   };
 }
 
-function matchCard(card, filters){
-  if(filters.loc && card.dataset.loc !== filters.loc) return false;
-  if(filters.type && card.dataset.type !== filters.type) return false;
-  if(filters.budget && card.dataset.budget !== filters.budget) return false;
-  if(filters.status && card.dataset.status !== filters.status) return false;
-  if(filters.bhk && card.dataset.bhk !== filters.bhk) return false;
-  if(filters.tag){
-    const tags = (card.dataset.tags||'').split(',');
-    if(!tags.includes(filters.tag)) return false;
+function matchCard(card,f){
+  if(f.loc && card.dataset.loc!==f.loc) return false;
+  if(f.type && card.dataset.type!==f.type) return false;
+  if(f.budget && card.dataset.budget!==f.budget) return false;
+  if(f.status && card.dataset.status!==f.status) return false;
+  if(f.bhk && card.dataset.bhk!==f.bhk) return false;
+  if(f.tag){
+    const tags=(card.dataset.tags||'').split(',');
+    if(!tags.includes(f.tag)) return false;
   }
   return true;
 }
 
 function applyFilters(){
-  const filters = getFilters();
-  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
-
-  filteredCards = allCards.filter(c => matchCard(c, filters));
-  currentPage = 1;
-
+  const f=getFilters();
+  const all=Array.from(document.querySelectorAll('#projGrid .proj-card'));
+  filteredCards=all.filter(c=>matchCard(c,f));
+  currentPage=1;
   renderPage();
-  renderActiveChips(filters);
+  renderChips(f);
   renderPagination();
-
-  // Smooth scroll to results
-  document.querySelector('.proj-sec').scrollIntoView({behavior:'smooth',block:'start'});
+  updateMobToggleCount();
 }
 
 function renderPage(){
-  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
-  const start = (currentPage - 1) * PER_PAGE;
-  const end = start + PER_PAGE;
-  const pageCards = filteredCards.slice(start, end);
+  const all=Array.from(document.querySelectorAll('#projGrid .proj-card'));
+  const start=(currentPage-1)*PER_PAGE;
+  const end=start+PER_PAGE;
+  const page=filteredCards.slice(start,end);
 
-  // Hide all first
-  allCards.forEach(c => {
-    c.classList.add('hidden');
-    c.classList.remove('fade-in');
-  });
+  all.forEach(c=>{c.classList.add('hidden');c.classList.remove('fade-in')});
+  page.forEach((c,i)=>{c.classList.remove('hidden');setTimeout(()=>c.classList.add('fade-in'),i*80)});
 
-  // Show page cards with staggered animation
-  pageCards.forEach((c, i) => {
-    c.classList.remove('hidden');
-    setTimeout(() => c.classList.add('fade-in'), i * 80);
-  });
-
-  // Update counts
-  document.getElementById('pShowing').textContent = pageCards.length;
-  document.getElementById('pTotal').textContent = filteredCards.length;
-
-  // No results
-  document.getElementById('noResults').style.display = filteredCards.length === 0 ? 'block' : 'none';
-  document.getElementById('projGrid').style.display = filteredCards.length === 0 ? 'none' : 'grid';
+  document.getElementById('pShowing').textContent=page.length;
+  document.getElementById('pTotal').textContent=filteredCards.length;
+  document.getElementById('noResults').style.display=filteredCards.length===0?'block':'none';
+  document.getElementById('projGrid').style.display=filteredCards.length===0?'none':'grid';
 }
 
 function renderPagination(){
-  const totalPages = Math.ceil(filteredCards.length / PER_PAGE);
-  const pgn = document.getElementById('pagination');
-  pgn.innerHTML = '';
-
-  if(totalPages <= 1){ pgn.style.display = 'none'; return; }
-  pgn.style.display = 'flex';
+  const total=Math.ceil(filteredCards.length/PER_PAGE);
+  const pgn=document.getElementById('pagination');
+  pgn.innerHTML='';
+  if(total<=1){pgn.style.display='none';return}
+  pgn.style.display='flex';
 
   // Prev
-  const prev = document.createElement('button');
-  prev.className = 'pg-btn';
-  prev.innerHTML = '← Prev';
-  prev.disabled = currentPage === 1;
-  prev.onclick = () => { if(currentPage > 1){ currentPage--; renderPage(); renderPagination(); scrollToGrid(); }};
+  const prev=mk('button','pg-btn','← Prev');
+  prev.disabled=currentPage===1;
+  prev.onclick=()=>{if(currentPage>1){currentPage--;renderPage();renderPagination();scrollGrid()}};
   pgn.appendChild(prev);
 
-  // Page numbers
-  for(let i = 1; i <= totalPages; i++){
-    const btn = document.createElement('button');
-    btn.className = 'pg-btn' + (i === currentPage ? ' active' : '');
-    btn.textContent = i;
-    btn.onclick = () => { currentPage = i; renderPage(); renderPagination(); scrollToGrid(); };
-    pgn.appendChild(btn);
+  // Pages
+  for(let i=1;i<=total;i++){
+    const b=mk('button','pg-btn'+(i===currentPage?' active':''),i);
+    b.onclick=()=>{currentPage=i;renderPage();renderPagination();scrollGrid()};
+    pgn.appendChild(b);
   }
 
   // Next
-  const next = document.createElement('button');
-  next.className = 'pg-btn';
-  next.innerHTML = 'Next →';
-  next.disabled = currentPage === totalPages;
-  next.onclick = () => { if(currentPage < totalPages){ currentPage++; renderPage(); renderPagination(); scrollToGrid(); }};
+  const next=mk('button','pg-btn','Next →');
+  next.disabled=currentPage===total;
+  next.onclick=()=>{if(currentPage<total){currentPage++;renderPage();renderPagination();scrollGrid()}};
   pgn.appendChild(next);
 
   // Info
-  const info = document.createElement('span');
-  info.className = 'pg-info';
-  info.innerHTML = `Page <span>${currentPage}</span> of <span>${totalPages}</span>`;
+  const info=document.createElement('span');
+  info.className='pg-info';
+  info.innerHTML=`Page <span>${currentPage}</span> of <span>${total}</span>`;
   pgn.appendChild(info);
 }
 
-function scrollToGrid(){
-  document.querySelector('.proj-sec').scrollIntoView({behavior:'smooth',block:'start'});
-}
+function mk(tag,cls,txt){const e=document.createElement(tag);e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
 
-function renderActiveChips(filters){
-  const box = document.getElementById('activeFilters');
-  box.innerHTML = '';
-  const ids = ['fLoc','fType','fBud','fStat','fBHK'];
-  const keys = ['loc','type','budget','status','bhk'];
+function scrollGrid(){document.querySelector('.proj-sec').scrollIntoView({behavior:'smooth',block:'start'})}
 
-  keys.forEach((k,i) => {
-    if(filters[k]){
-      const chip = document.createElement('span');
-      chip.className = 'active-filter-chip';
-      const label = filterLabels[ids[i]][filters[k]] || filters[k];
-      chip.innerHTML = `${label} <span class="chip-remove" onclick="removeFilter('${ids[i]}')">✕</span>`;
+function renderChips(f){
+  const box=document.getElementById('activeFilters');
+  box.innerHTML='';
+  const ids=['fLoc','fType','fBud','fStat','fBHK'];
+  const keys=['loc','type','budget','status','bhk'];
+  keys.forEach((k,i)=>{
+    if(f[k]){
+      const chip=document.createElement('span');
+      chip.className='active-filter-chip';
+      chip.innerHTML=`${filterLabels[ids[i]][f[k]]||f[k]} <span class="chip-x" onclick="removeFilter('${ids[i]}')">✕</span>`;
       box.appendChild(chip);
     }
   });
-
-  if(filters.tag){
-    const chip = document.createElement('span');
-    chip.className = 'active-filter-chip';
-    chip.innerHTML = `${filters.tag.charAt(0).toUpperCase()+filters.tag.slice(1)} <span class="chip-remove" onclick="removeTagFilter()">✕</span>`;
+  if(f.tag){
+    const chip=document.createElement('span');
+    chip.className='active-filter-chip';
+    chip.innerHTML=`${f.tag.charAt(0).toUpperCase()+f.tag.slice(1)} <span class="chip-x" onclick="removeTagFilter()">✕</span>`;
     box.appendChild(chip);
   }
 }
 
-function removeFilter(selectId){
-  const sel = document.getElementById(selectId);
-  sel.value = '';
-  sel.classList.remove('has-value');
+function removeFilter(id){
+  const s=document.getElementById(id);s.value='';s.classList.remove('has-value');
   applyFilters();
 }
 
 function removeTagFilter(){
-  activeTag = '';
-  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  activeTag='';
+  document.querySelectorAll('.flt-tag').forEach(t=>t.classList.remove('active'));
   document.querySelector('.flt-tag[data-tag=""]').classList.add('active');
   applyFilters();
 }
 
 function clearFilters(){
-  // Reset all selects
-  ['fLoc','fType','fBud','fStat','fBHK'].forEach(id => {
-    const sel = document.getElementById(id);
-    sel.value = '';
-    sel.classList.remove('has-value');
+  ['fLoc','fType','fBud','fStat','fBHK'].forEach(id=>{
+    const s=document.getElementById(id);s.value='';s.classList.remove('has-value');
   });
-
-  // Reset tag
-  activeTag = '';
-  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  activeTag='';
+  document.querySelectorAll('.flt-tag').forEach(t=>t.classList.remove('active'));
   document.querySelector('.flt-tag[data-tag=""]').classList.add('active');
-
-  // Clear chips
-  document.getElementById('activeFilters').innerHTML = '';
-
-  // Apply
+  document.getElementById('activeFilters').innerHTML='';
   applyFilters();
 }
 
 function setTag(el){
-  document.querySelectorAll('.flt-tag').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.flt-tag').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
-  activeTag = el.dataset.tag || '';
+  activeTag=el.dataset.tag||'';
+  // Don't auto-close on tag click, let user also pick dropdowns
   applyFilters();
 }
 
-// ===== Auto-apply on any filter change =====
-['fLoc','fType','fBud','fStat','fBHK'].forEach(id => {
-  document.getElementById(id).addEventListener('change', () => applyFilters());
+// Desktop: auto-apply on dropdown change
+['fLoc','fType','fBud','fStat','fBHK'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',()=>{
+    if(!isMobile()) applyFilters(); // Desktop: auto apply
+    // Mobile: user clicks "Apply" button
+  });
 });
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-  initObs();
-  setTimeout(animCount, 2000);
+function initProjects(){
+  clearFilters();
+}
 
-  // Initialize projects
-  const allCards = Array.from(document.querySelectorAll('#projGrid .proj-card'));
-  filteredCards = [...allCards];
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  initObs();
+  setTimeout(animCount,2000);
+  // Initial load: show all projects
+  const all=Array.from(document.querySelectorAll('#projGrid .proj-card'));
+  filteredCards=[...all];
   renderPage();
   renderPagination();
+  updateMobToggleCount();
+});
+
+// Handle resize: if user resizes from mobile to desktop
+window.addEventListener('resize',()=>{
+  if(!isMobile()){
+    closeMobFilter(); // close overlay if open
+  }
 });
 </script>
 </body>
